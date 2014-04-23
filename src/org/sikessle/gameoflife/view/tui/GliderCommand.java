@@ -2,12 +2,12 @@ package org.sikessle.gameoflife.view.tui;
 
 import org.sikessle.gameoflife.controller.Controller;
 
-public class DemoGliderCommand extends Command {
+public class GliderCommand extends Command {
 
 	private final Controller controller;
 	private static final String DESCRIPTION = "d: generate glider";
 
-	public DemoGliderCommand(Controller controller) {
+	public GliderCommand(Controller controller) {
 		if (controller == null) {
 			throw new NullPointerException();
 		}

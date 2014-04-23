@@ -134,7 +134,7 @@ public class TextUI implements Observer {
 	/**
 	 * Reads and interprets from the set input stream.
 	 */
-	public void readAndInterpretInputLine() {
+	public void readAndInterpretFromInput() {
 		if (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
 			interpretLine(line);
@@ -146,7 +146,7 @@ public class TextUI implements Observer {
 	 * 
 	 * @param line
 	 */
-	public void readAndInterpretInput(String line) {
+	public void readAndInterpretFromArgument(String line) {
 		if (line == null) {
 			return;
 		}

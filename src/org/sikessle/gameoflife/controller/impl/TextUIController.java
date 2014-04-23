@@ -2,7 +2,7 @@ package org.sikessle.gameoflife.controller.impl;
 
 import org.sikessle.gameoflife.controller.Controller;
 import org.sikessle.gameoflife.model.Grid;
-import org.sikessle.gameoflife.view.tui.DemoGliderCommand;
+import org.sikessle.gameoflife.view.tui.GliderCommand;
 import org.sikessle.gameoflife.view.tui.QuitCommand;
 import org.sikessle.gameoflife.view.tui.SetGridSizeCommand;
 import org.sikessle.gameoflife.view.tui.SetLivingCellCommand;
@@ -12,37 +12,36 @@ import org.sikessle.gameoflife.view.tui.TextUI;
 
 public class TextUIController extends Controller {
 
-	private final TextUI consoleUI;
+	private final TextUI textUI;
 	private boolean runGame;
 
 	public TextUIController(Grid grid) {
 		super(grid);
 
 		grid.setGridSize(10, 20);
-		consoleUI = new TextUI(grid);
+		textUI = new TextUI(grid);
 		addCommands();
-		consoleUI.redraw();
 		runGame = true;
-		consoleUI.redraw();
+		textUI.redraw();
 	}
 
 	private void addCommands() {
-		consoleUI.addCommand(new QuitCommand(this));
-		consoleUI.addCommand(new SetGridSizeCommand(this));
-		consoleUI.addCommand(new StepOneGenerationCommand(this));
-		consoleUI.addCommand(new StepNGenerationsCommand(this));
-		consoleUI.addCommand(new SetLivingCellCommand(this));
-		consoleUI.addCommand(new DemoGliderCommand(this));
+		textUI.addCommand(new QuitCommand(this));
+		textUI.addCommand(new SetGridSizeCommand(this));
+		textUI.addCommand(new StepOneGenerationCommand(this));
+		textUI.addCommand(new StepNGenerationsCommand(this));
+		textUI.addCommand(new SetLivingCellCommand(this));
+		textUI.addCommand(new GliderCommand(this));
 	}
 
-	public void readAndInterpretInputInLoop() {
+	public void startReadAndInterpretLoop() {
 		while (runGame) {
-			consoleUI.readAndInterpretInputLine();
+			textUI.readAndInterpretFromInput();
 		}
 	}
 
-	public void readAndInterpretInput(String line) {
-		consoleUI.readAndInterpretInput(line);
+	public void readAndInterpret(String line) {
+		textUI.readAndInterpretFromArgument(line);
 	}
 
 	@Override
