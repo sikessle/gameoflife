@@ -24,7 +24,6 @@ public class TextUIController extends Controller {
 		consoleUI.redraw();
 		runGame = true;
 		consoleUI.redraw();
-		runUILoop();
 	}
 
 	private void addCommands() {
@@ -36,7 +35,7 @@ public class TextUIController extends Controller {
 		consoleUI.addCommand(new DemoGliderCommand(this));
 	}
 
-	private void runUILoop() {
+	public void readAndInterpretInputInLoop() {
 		while (runGame) {
 			consoleUI.readAndInterpretInputLine();
 		}

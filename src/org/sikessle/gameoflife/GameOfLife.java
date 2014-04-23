@@ -15,7 +15,7 @@ public class GameOfLife {
 		Grid grid = injector.getInstance(Grid.class);
 
 		// new SwingUIController(grid);
-		new TextUIController(grid);
+		new TextUIController(grid).readAndInterpretInputInLoop();
 	}
 
 }
