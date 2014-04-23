@@ -15,11 +15,9 @@ public class GliderCommand extends Command {
 	}
 
 	@Override
-	public void handleOrPassOnCommand(String command, Args arguments) {
+	public void handleIfResponsible(String command, Args arguments) {
 		if (command.equals("g")) {
 			showGlider();
-		} else {
-			passOnToSuccessor(command, arguments);
 		}
 	}
 

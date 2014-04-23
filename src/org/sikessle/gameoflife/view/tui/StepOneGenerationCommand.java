@@ -17,14 +17,12 @@ public class StepOneGenerationCommand extends Command {
 	}
 
 	@Override
-	public void handleOrPassOnCommand(String command, Args arguments) {
+	public void handleIfResponsible(String command, Args arguments) {
 		this.command = command;
 		this.arguments = arguments;
 
 		if (isCorrectCommand()) {
 			controller.stepOneGeneration();
-		} else {
-			passOnToSuccessor(command, arguments);
 		}
 	}
 

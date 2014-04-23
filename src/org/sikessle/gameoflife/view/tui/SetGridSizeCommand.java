@@ -21,7 +21,7 @@ public class SetGridSizeCommand extends Command {
 	}
 
 	@Override
-	public void handleOrPassOnCommand(String command, Args arguments) {
+	public void handleIfResponsible(String command, Args arguments) {
 		this.command = command;
 		this.arguments = arguments;
 
@@ -29,8 +29,6 @@ public class SetGridSizeCommand extends Command {
 
 		if (isCorrectCommand()) {
 			controller.setGridSize(rows, columns);
-		} else {
-			passOnToSuccessor(command, arguments);
 		}
 	}
 

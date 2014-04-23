@@ -156,7 +156,7 @@ public class TextUI implements Observer {
 	private void interpretLine(String line) {
 		String command = getCommand(line);
 		Args arguments = getArguments(line);
-		firstCommand.handleOrPassOnCommand(command, arguments);
+		firstCommand.handle(command, arguments);
 	}
 
 	private String getCommand(String line) {

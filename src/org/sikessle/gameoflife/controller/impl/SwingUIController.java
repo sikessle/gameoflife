@@ -21,7 +21,7 @@ public final class SwingUIController extends Controller {
 			@Override
 			public void run() {
 				ui = new SwingUI(grid, SwingUIController.this);
-				grid.setGridSize(40, 50);
+				grid.setGridSize(20, 40);
 			}
 		});
 	}

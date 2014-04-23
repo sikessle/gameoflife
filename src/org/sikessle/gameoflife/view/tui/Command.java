@@ -12,13 +12,18 @@ public abstract class Command {
 		return successor;
 	}
 
-	protected void passOnToSuccessor(String command, Args arguments) {
+	private void passOnToSuccessor(String command, Args arguments) {
 		if (successor != null) {
-			successor.handleOrPassOnCommand(command, arguments);
+			successor.handle(command, arguments);
 		}
 	}
 
-	public abstract void handleOrPassOnCommand(String command, Args arguments);
+	public void handle(String command, Args arguments) {
+		handleIfResponsible(command, arguments);
+		passOnToSuccessor(command, arguments);
+	}
+
+	protected abstract void handleIfResponsible(String command, Args arguments);
 
 	@Override
 	public abstract String toString();

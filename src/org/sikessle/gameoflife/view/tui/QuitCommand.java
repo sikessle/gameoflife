@@ -15,11 +15,9 @@ public class QuitCommand extends Command {
 	}
 
 	@Override
-	public void handleOrPassOnCommand(String command, Args arguments) {
+	public void handleIfResponsible(String command, Args arguments) {
 		if (command.equals("q")) {
 			controller.quit();
-		} else {
-			passOnToSuccessor(command, arguments);
 		}
 	}
 

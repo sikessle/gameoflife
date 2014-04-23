@@ -24,6 +24,11 @@ public class GridImplTest {
 		new GridImpl(null);
 	}
 
+	@Test(expected = NullPointerException.class)
+	public void testSetGenerationStrategyException() {
+		grid.setGenerationStrategy(null);
+	}
+
 	@Test
 	public void testSetGridSizeWithInvalidArgs() {
 		int expectedRows = grid.getNumberOfRows();

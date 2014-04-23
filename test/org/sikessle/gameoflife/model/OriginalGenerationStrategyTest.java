@@ -5,15 +5,16 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.sikessle.gameoflife.model.impl.Living23Dead3GenerationStrategy;
+import org.sikessle.gameoflife.plugin.GenerationStrategyPlugin;
+import org.sikessle.gameoflife.plugin.impl.OriginalGenerationStrategy;
 
-public class Living23Dead3GenerationStrategyTest {
+public class OriginalGenerationStrategyTest {
 
-	private GenerationStrategy strategy;
+	private GenerationStrategyPlugin strategy;
 
 	@Before
 	public void setUp() throws Exception {
-		strategy = new Living23Dead3GenerationStrategy();
+		strategy = new OriginalGenerationStrategy();
 	}
 
 	@Test
