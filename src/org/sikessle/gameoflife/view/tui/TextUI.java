@@ -131,11 +131,26 @@ public class TextUI implements Observer {
 		output.print(text);
 	}
 
+	/**
+	 * Reads and interprets from the set input stream.
+	 */
 	public void readAndInterpretInputLine() {
 		if (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
 			interpretLine(line);
 		}
+	}
+
+	/**
+	 * Reads and interprets from the argument.
+	 * 
+	 * @param line
+	 */
+	public void readAndInterpretInput(String line) {
+		if (line == null) {
+			return;
+		}
+		interpretLine(line);
 	}
 
 	private void interpretLine(String line) {

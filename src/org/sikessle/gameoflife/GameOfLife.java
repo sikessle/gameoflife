@@ -1,16 +1,19 @@
 package org.sikessle.gameoflife;
 
 import org.sikessle.gameoflife.controller.impl.TextUIController;
-import org.sikessle.gameoflife.model.GenerationStrategy;
+import org.sikessle.gameoflife.model.BaseModule;
 import org.sikessle.gameoflife.model.Grid;
-import org.sikessle.gameoflife.model.impl.GridImpl;
-import org.sikessle.gameoflife.model.impl.Living23Dead3GenerationStrategy;
+
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 
 public class GameOfLife {
 
 	public static void main(String[] args) {
-		GenerationStrategy generationStrategy = new Living23Dead3GenerationStrategy();
-		Grid grid = new GridImpl(generationStrategy);
+
+		Injector injector = Guice.createInjector(new BaseModule());
+		Grid grid = injector.getInstance(Grid.class);
+
 		// new SwingUIController(grid);
 		new TextUIController(grid);
 	}

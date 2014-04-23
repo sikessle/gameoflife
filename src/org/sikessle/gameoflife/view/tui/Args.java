@@ -20,6 +20,10 @@ public class Args implements Iterable<String> {
 
 	private void parseAndTrim(String inputToParse) {
 		String[] rawArgs = inputToParse.trim().split(" ");
+		if (rawArgs[0].isEmpty()) {
+			args = new String[0];
+			return;
+		}
 		args = new String[rawArgs.length];
 
 		for (int i = 0; i < rawArgs.length; i++) {

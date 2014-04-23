@@ -14,10 +14,10 @@ public interface Grid extends Observable {
 
 	void stepNGenerations(int numberOfGenerations);
 
-	void setGenerationStrategy(GenerationStrategy generationStrategy);
-
 	void changeCell(int row, int column, boolean alive);
 
 	void killAllCells();
+
+	void setGenerationStrategy(GenerationStrategy strategy);
 
 }

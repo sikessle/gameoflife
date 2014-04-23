@@ -7,6 +7,8 @@ import org.sikessle.gameoflife.model.GenerationStrategy;
 import org.sikessle.gameoflife.model.Grid;
 import org.sikessle.gameoflife.util.ObservableImpl;
 
+import com.google.inject.Inject;
+
 public class GridImpl implements Grid {
 
 	private boolean[][] cells;
@@ -15,6 +17,7 @@ public class GridImpl implements Grid {
 	private GenerationStrategy generationStrategy;
 	private final ObservableImpl observable;
 
+	@Inject
 	public GridImpl(GenerationStrategy generationStrategy) {
 		if (generationStrategy == null) {
 			throw new NullPointerException();
@@ -26,6 +29,18 @@ public class GridImpl implements Grid {
 		createGrid();
 	}
 
+	private void createGrid() {
+		cells = new boolean[rows][columns];
+	}
+
+	@Override
+	public void setGenerationStrategy(GenerationStrategy generationStrategy) {
+		if (generationStrategy == null) {
+			throw new NullPointerException();
+		}
+		this.generationStrategy = generationStrategy;
+	}
+
 	@Override
 	public void setGridSize(int rows, int columns) {
 		if (rows < 0 || columns < 0) {
@@ -35,10 +50,6 @@ public class GridImpl implements Grid {
 		this.columns = columns;
 		createGrid();
 		setChangedAndNotify();
-	}
-
-	private void createGrid() {
-		cells = new boolean[rows][columns];
 	}
 
 	@Override
@@ -85,11 +96,6 @@ public class GridImpl implements Grid {
 	private boolean isOutOfBounds(int row, int column) {
 		return row < 0 || row >= cells.length || column < 0
 				|| column >= cells[row].length;
-	}
-
-	@Override
-	public void setGenerationStrategy(GenerationStrategy generationStrategy) {
-		this.generationStrategy = generationStrategy;
 	}
 
 	@Override

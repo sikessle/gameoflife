@@ -6,6 +6,7 @@ public class StepOneGenerationCommand extends Command {
 
 	private final Controller controller;
 	private String command;
+	private Args arguments;
 	private static final String DESCRIPTION = "n: step 1 generation";
 
 	public StepOneGenerationCommand(Controller controller) {
@@ -18,6 +19,7 @@ public class StepOneGenerationCommand extends Command {
 	@Override
 	public void handleOrPassOnCommand(String command, Args arguments) {
 		this.command = command;
+		this.arguments = arguments;
 
 		if (isCorrectCommand()) {
 			controller.stepOneGeneration();
@@ -27,7 +29,7 @@ public class StepOneGenerationCommand extends Command {
 	}
 
 	private boolean isCorrectCommand() {
-		if (!command.equals("n")) {
+		if (!command.equals("n") || arguments.size() > 0) {
 			return false;
 		}
 

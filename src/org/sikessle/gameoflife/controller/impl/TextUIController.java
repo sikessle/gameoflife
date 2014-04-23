@@ -2,11 +2,11 @@ package org.sikessle.gameoflife.controller.impl;
 
 import org.sikessle.gameoflife.controller.Controller;
 import org.sikessle.gameoflife.model.Grid;
-import org.sikessle.gameoflife.view.tui.StepNGenerationsCommand;
 import org.sikessle.gameoflife.view.tui.DemoGliderCommand;
 import org.sikessle.gameoflife.view.tui.QuitCommand;
 import org.sikessle.gameoflife.view.tui.SetGridSizeCommand;
 import org.sikessle.gameoflife.view.tui.SetLivingCellCommand;
+import org.sikessle.gameoflife.view.tui.StepNGenerationsCommand;
 import org.sikessle.gameoflife.view.tui.StepOneGenerationCommand;
 import org.sikessle.gameoflife.view.tui.TextUI;
 
@@ -40,6 +40,10 @@ public class TextUIController extends Controller {
 		while (runGame) {
 			consoleUI.readAndInterpretInputLine();
 		}
+	}
+
+	public void readAndInterpretInput(String line) {
+		consoleUI.readAndInterpretInput(line);
 	}
 
 	@Override
