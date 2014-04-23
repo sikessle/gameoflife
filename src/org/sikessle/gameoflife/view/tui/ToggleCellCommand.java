@@ -59,7 +59,7 @@ public class ToggleCellCommand extends Command {
 	}
 
 	private boolean isCorrectCommand() {
-		if (!command.equals("l") || argsNotValid()) {
+		if (!command.equals("t") || argsNotValid()) {
 			return false;
 		}
 
