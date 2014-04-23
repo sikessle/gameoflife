@@ -24,11 +24,11 @@ public class TextUI implements Observer {
 		}
 		this.grid = grid;
 		firstCommand = lastCommand = new NullCommand();
-		setDefaultStandardInputOutput();
+		setDefaultInputOutput();
 		grid.addObserver(this);
 	}
 
-	private void setDefaultStandardInputOutput() {
+	private void setDefaultInputOutput() {
 		setOutput(System.out);
 		setInput(System.in);
 	}

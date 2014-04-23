@@ -5,7 +5,7 @@ import org.sikessle.gameoflife.controller.Controller;
 public class GliderCommand extends Command {
 
 	private final Controller controller;
-	private static final String DESCRIPTION = "d: generate glider";
+	private static final String DESCRIPTION = "g: generate glider";
 
 	public GliderCommand(Controller controller) {
 		if (controller == null) {
@@ -16,7 +16,7 @@ public class GliderCommand extends Command {
 
 	@Override
 	public void handleOrPassOnCommand(String command, Args arguments) {
-		if (command.equals("d")) {
+		if (command.equals("g")) {
 			showGlider();
 		} else {
 			passOnToSuccessor(command, arguments);

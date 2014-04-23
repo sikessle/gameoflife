@@ -4,16 +4,16 @@ import java.util.Iterator;
 
 import org.sikessle.gameoflife.controller.Controller;
 
-public class SetLivingCellCommand extends Command {
+public class ToggleCellCommand extends Command {
 
 	private final Controller controller;
 	private String command;
 	private Args arguments;
 	private int row;
 	private int column;
-	private static final String DESCRIPTION = "l [x] [y]: set to living";
+	private static final String DESCRIPTION = "t [x] [y]: toggle cell";
 
-	public SetLivingCellCommand(Controller controller) {
+	public ToggleCellCommand(Controller controller) {
 		if (controller == null) {
 			throw new NullPointerException();
 		}
@@ -28,9 +28,17 @@ public class SetLivingCellCommand extends Command {
 		parseArguments();
 
 		if (isCorrectCommand()) {
-			controller.setCellToLivingAtPosition(row, column);
+			toggleCell();
 		} else {
 			passOnToSuccessor(command, arguments);
+		}
+	}
+
+	private void toggleCell() {
+		if (controller.isCellAlive(row, column)) {
+			controller.setCellToDeadAtPosition(row, column);
+		} else {
+			controller.setCellToLivingAtPosition(row, column);
 		}
 	}
 

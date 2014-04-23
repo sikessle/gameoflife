@@ -26,6 +26,14 @@ public abstract class Controller {
 		grid.changeCell(row, column, true);
 	}
 
+	public void setCellToDeadAtPosition(int row, int column) {
+		grid.changeCell(row, column, false);
+	}
+
+	public boolean isCellAlive(int row, int column) {
+		return grid.getCells()[row][column];
+	}
+
 	public void killAllCells() {
 		grid.killAllCells();
 	}
