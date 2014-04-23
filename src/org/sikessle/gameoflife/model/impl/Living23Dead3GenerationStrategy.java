@@ -1,4 +1,6 @@
-package org.sikessle.gameoflife.model;
+package org.sikessle.gameoflife.model.impl;
+
+import org.sikessle.gameoflife.model.GenerationStrategy;
 
 
 public class Living23Dead3GenerationStrategy extends GenerationStrategy {

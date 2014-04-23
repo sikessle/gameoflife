@@ -10,13 +10,13 @@ import javax.swing.JPanel;
 import javax.swing.event.MouseInputAdapter;
 
 import org.sikessle.gameoflife.controller.Controller;
-import org.sikessle.gameoflife.model.GridReadOnly;
+import org.sikessle.gameoflife.model.Grid;
 
 public class GridDrawingPanel extends JPanel implements Observer {
 
 	private static final long serialVersionUID = 4724075972585639540L;
 
-	private final GridReadOnly grid;
+	private final Grid grid;
 
 	private final Color backgroundColor = new Color(0, 0, 0);
 	private final Color livingCellColor = new Color(0, 176, 255);
@@ -25,7 +25,7 @@ public class GridDrawingPanel extends JPanel implements Observer {
 
 	private static final int CELL_SIZE = 30;
 
-	public GridDrawingPanel(GridReadOnly grid, Controller controller) {
+	public GridDrawingPanel(Grid grid, Controller controller) {
 		if (grid == null || controller == null) {
 			throw new NullPointerException();
 		}

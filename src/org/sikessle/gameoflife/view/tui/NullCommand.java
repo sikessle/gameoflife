@@ -7,4 +7,8 @@ public class NullCommand extends Command {
 		passOnToSuccessor(command, arguments);
 	}
 
+	@Override
+	public String toString() {
+		return "";
+	}
 }

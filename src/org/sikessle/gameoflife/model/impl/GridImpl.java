@@ -1,8 +1,10 @@
-package org.sikessle.gameoflife.model;
+package org.sikessle.gameoflife.model.impl;
 
 import java.util.Arrays;
 import java.util.Observer;
 
+import org.sikessle.gameoflife.model.GenerationStrategy;
+import org.sikessle.gameoflife.model.Grid;
 import org.sikessle.gameoflife.util.ObservableImpl;
 
 public class GridImpl implements Grid {

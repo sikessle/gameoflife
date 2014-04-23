@@ -2,21 +2,23 @@ package org.sikessle.gameoflife.view.tui;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Scanner;
 
-import org.sikessle.gameoflife.model.GridReadOnly;
+import org.sikessle.gameoflife.model.Grid;
 
 public class TextUI implements Observer {
 
-	private final GridReadOnly grid;
+	private final Grid grid;
 	private Scanner scanner;
 	private PrintStream output;
 	private final Command firstCommand;
 	private Command lastCommand;
 
-	public TextUI(GridReadOnly grid) {
+	public TextUI(Grid grid) {
 		if (grid == null) {
 			throw new NullPointerException();
 		}
@@ -24,11 +26,10 @@ public class TextUI implements Observer {
 		firstCommand = lastCommand = new NullCommand();
 		setDefaultStandardInputOutput();
 		grid.addObserver(this);
-		redraw();
 	}
 
 	private void setDefaultStandardInputOutput() {
-		this.output = System.out;
+		setOutput(System.out);
 		setInput(System.in);
 	}
 
@@ -70,6 +71,8 @@ public class TextUI implements Observer {
 			drawLineBreak();
 		}
 		drawHorizontalBorder();
+		drawLineBreak();
+		drawAvailableCommands();
 	}
 
 	private void drawVerticalBorder() {
@@ -100,6 +103,28 @@ public class TextUI implements Observer {
 
 	private void drawLineBreak() {
 		writeOut(System.lineSeparator());
+	}
+
+	private void drawAvailableCommands() {
+		List<String> commandFormats = getAllCommandFormats();
+		writeOut("Commands: ");
+		drawLineBreak();
+		for (String command : commandFormats) {
+			writeOut(command);
+			drawLineBreak();
+		}
+	}
+
+	private List<String> getAllCommandFormats() {
+		Command command = firstCommand;
+		List<String> commandFormats = new LinkedList<String>();
+
+		while (command != null) {
+			commandFormats.add(command.toString());
+			command = command.getSuccessor();
+		}
+
+		return commandFormats;
 	}
 
 	private void writeOut(String text) {

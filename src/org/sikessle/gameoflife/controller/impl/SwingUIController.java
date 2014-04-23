@@ -1,7 +1,8 @@
-package org.sikessle.gameoflife.controller;
+package org.sikessle.gameoflife.controller.impl;
 
 import javax.swing.SwingUtilities;
 
+import org.sikessle.gameoflife.controller.Controller;
 import org.sikessle.gameoflife.model.Grid;
 import org.sikessle.gameoflife.view.gui.SwingUI;
 

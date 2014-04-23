@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.sikessle.gameoflife.model.impl.Living23Dead3GenerationStrategy;
 
 public class Living23Dead3GenerationStrategyTest {
 

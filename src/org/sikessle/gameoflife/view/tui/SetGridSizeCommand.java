@@ -11,6 +11,7 @@ public class SetGridSizeCommand extends Command {
 	private Args arguments;
 	private int rows;
 	private int columns;
+	private static final String DESCRIPTION = "s [x] [y]: set grid size";
 
 	public SetGridSizeCommand(Controller controller) {
 		if (controller == null) {
@@ -59,6 +60,11 @@ public class SetGridSizeCommand extends Command {
 
 	private boolean argsNotValid() {
 		return rows <= 0 || columns <= 0;
+	}
+
+	@Override
+	public String toString() {
+		return DESCRIPTION;
 	}
 
 }

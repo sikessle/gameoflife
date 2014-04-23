@@ -15,9 +15,7 @@ public abstract class Controller {
 	}
 
 	public void setGridSize(int rows, int columns) {
-		if (rows > 0 && columns > 0) {
-			grid.setGridSize(rows, columns);
-		}
+		grid.setGridSize(rows, columns);
 	}
 
 	public void stepOneGeneration() {
@@ -25,13 +23,19 @@ public abstract class Controller {
 	}
 
 	public void setCellToLivingAtPosition(int row, int column) {
-		if (row >= 0 && column >= 0) {
-			grid.changeCell(row, column, true);
-		}
+		grid.changeCell(row, column, true);
 	}
 
 	public void killAllCells() {
 		grid.killAllCells();
+	}
+
+	public int getNumberOfRows() {
+		return grid.getNumberOfRows();
+	}
+
+	public int getNumberOfColumns() {
+		return grid.getNumberOfColumns();
 	}
 
 	abstract public void quit();

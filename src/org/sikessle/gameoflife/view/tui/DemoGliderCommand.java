@@ -5,6 +5,7 @@ import org.sikessle.gameoflife.controller.Controller;
 public class DemoGliderCommand extends Command {
 
 	private final Controller controller;
+	private static final String DESCRIPTION = "d: generate glider";
 
 	public DemoGliderCommand(Controller controller) {
 		if (controller == null) {
@@ -23,7 +24,9 @@ public class DemoGliderCommand extends Command {
 	}
 
 	private void showGlider() {
-		controller.setGridSize(40, 60);
+		if (isGridNotLargeEnough()) {
+			return;
+		}
 		controller.setCellToLivingAtPosition(0, 1);
 		controller.setCellToLivingAtPosition(1, 2);
 		controller.setCellToLivingAtPosition(2, 0);
@@ -31,4 +34,15 @@ public class DemoGliderCommand extends Command {
 		controller.setCellToLivingAtPosition(2, 2);
 	}
 
+	private boolean isGridNotLargeEnough() {
+		int rows = controller.getNumberOfRows();
+		int columns = controller.getNumberOfColumns();
+
+		return rows < 2 || columns < 2;
+	}
+
+	@Override
+	public String toString() {
+		return DESCRIPTION;
+	}
 }

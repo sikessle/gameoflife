@@ -5,6 +5,7 @@ import org.sikessle.gameoflife.controller.Controller;
 public class QuitCommand extends Command {
 
 	private final Controller controller;
+	private static final String DESCRIPTION = "q: quit";
 
 	public QuitCommand(Controller controller) {
 		if (controller == null) {
@@ -20,5 +21,10 @@ public class QuitCommand extends Command {
 		} else {
 			passOnToSuccessor(command, arguments);
 		}
+	}
+
+	@Override
+	public String toString() {
+		return DESCRIPTION;
 	}
 }

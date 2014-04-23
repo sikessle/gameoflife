@@ -6,6 +6,7 @@ public class StepOneGenerationCommand extends Command {
 
 	private final Controller controller;
 	private String command;
+	private static final String DESCRIPTION = "n: step 1 generation";
 
 	public StepOneGenerationCommand(Controller controller) {
 		if (controller == null) {
@@ -33,4 +34,8 @@ public class StepOneGenerationCommand extends Command {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return DESCRIPTION;
+	}
 }

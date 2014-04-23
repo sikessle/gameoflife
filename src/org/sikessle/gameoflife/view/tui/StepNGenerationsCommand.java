@@ -4,15 +4,16 @@ import java.util.Iterator;
 
 import org.sikessle.gameoflife.controller.Controller;
 
-public class AnimateCommand extends Command {
+public class StepNGenerationsCommand extends Command {
 
 	private final Controller controller;
 	private String command;
 	private Args arguments;
 	private int frames;
 	private static final int DELAY_BETWEEN_FRAMES_MS = 100;
+	private static final String DESCRIPTION = "n [x]: step x generations";
 
-	public AnimateCommand(Controller controller) {
+	public StepNGenerationsCommand(Controller controller) {
 		if (controller == null) {
 			throw new NullPointerException();
 		}
@@ -48,7 +49,7 @@ public class AnimateCommand extends Command {
 	}
 
 	private boolean isCorrectCommand() {
-		if (!command.equals("a") || argsNotValid()) {
+		if (!command.equals("n") || argsNotValid()) {
 			return false;
 		}
 
@@ -72,6 +73,11 @@ public class AnimateCommand extends Command {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public String toString() {
+		return DESCRIPTION;
 	}
 
 }

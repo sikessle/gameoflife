@@ -11,6 +11,7 @@ public class SetLivingCellCommand extends Command {
 	private Args arguments;
 	private int row;
 	private int column;
+	private static final String DESCRIPTION = "l [x] [y]: set to living";
 
 	public SetLivingCellCommand(Controller controller) {
 		if (controller == null) {
@@ -61,4 +62,8 @@ public class SetLivingCellCommand extends Command {
 		return row < 0 || column < 0;
 	}
 
+	@Override
+	public String toString() {
+		return DESCRIPTION;
+	}
 }

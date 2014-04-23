@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import org.sikessle.gameoflife.controller.Controller;
-import org.sikessle.gameoflife.model.GridReadOnly;
+import org.sikessle.gameoflife.model.Grid;
 
 public class ControlPanel extends JPanel implements Observer {
 
@@ -19,7 +19,7 @@ public class ControlPanel extends JPanel implements Observer {
 
 	protected static final long GENERATIONS_DELAY = 100;
 
-	private final GridReadOnly grid;
+	private final Grid grid;
 	private final Controller controller;
 
 	private JButton stepNGenerationsBtn;
@@ -30,7 +30,7 @@ public class ControlPanel extends JPanel implements Observer {
 	private JTextField rowsField;
 	private JTextField columnsField;
 
-	public ControlPanel(GridReadOnly grid, Controller controller) {
+	public ControlPanel(Grid grid, Controller controller) {
 		if (grid == null || controller == null) {
 			throw new NullPointerException();
 		}

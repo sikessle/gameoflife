@@ -1,7 +1,8 @@
-package org.sikessle.gameoflife.controller;
+package org.sikessle.gameoflife.controller.impl;
 
+import org.sikessle.gameoflife.controller.Controller;
 import org.sikessle.gameoflife.model.Grid;
-import org.sikessle.gameoflife.view.tui.AnimateCommand;
+import org.sikessle.gameoflife.view.tui.StepNGenerationsCommand;
 import org.sikessle.gameoflife.view.tui.DemoGliderCommand;
 import org.sikessle.gameoflife.view.tui.QuitCommand;
 import org.sikessle.gameoflife.view.tui.SetGridSizeCommand;
@@ -17,18 +18,21 @@ public class TextUIController extends Controller {
 	public TextUIController(Grid grid) {
 		super(grid);
 
+		grid.setGridSize(10, 20);
 		consoleUI = new TextUI(grid);
 		addCommands();
+		consoleUI.redraw();
 		runGame = true;
+		consoleUI.redraw();
 		runUILoop();
 	}
 
 	private void addCommands() {
 		consoleUI.addCommand(new QuitCommand(this));
 		consoleUI.addCommand(new SetGridSizeCommand(this));
-		consoleUI.addCommand(new AnimateCommand(this));
-		consoleUI.addCommand(new SetLivingCellCommand(this));
 		consoleUI.addCommand(new StepOneGenerationCommand(this));
+		consoleUI.addCommand(new StepNGenerationsCommand(this));
+		consoleUI.addCommand(new SetLivingCellCommand(this));
 		consoleUI.addCommand(new DemoGliderCommand(this));
 	}
 
