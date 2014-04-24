@@ -8,29 +8,45 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Scanner;
 
-import org.sikessle.gameoflife.model.Grid;
+import org.sikessle.gameoflife.controller.GridController;
 
-public class TextUI implements Observer {
+public class TextView implements Observer {
 
-	private final Grid grid;
+	private final GridController controller;
 	private Scanner scanner;
 	private PrintStream output;
 	private final Command firstCommand;
 	private Command lastCommand;
+	private boolean runGame = true;
 
-	public TextUI(Grid grid) {
-		if (grid == null) {
+	public TextView(GridController controller) {
+		if (controller == null) {
 			throw new NullPointerException();
 		}
-		this.grid = grid;
+		this.controller = controller;
 		firstCommand = lastCommand = new NullCommand();
+		addCommands();
 		setDefaultInputOutput();
-		grid.addObserver(this);
+		controller.addObserver(this);
 	}
 
 	private void setDefaultInputOutput() {
 		setOutput(System.out);
 		setInput(System.in);
+	}
+
+	private void addCommands() {
+		addCommand(new QuitCommand(this));
+		addCommand(new SetGridSizeCommand(this));
+		addCommand(new StepOneGenerationCommand(this));
+		addCommand(new StepNGenerationsCommand(this));
+		addCommand(new ToggleCellCommand(this));
+		addCommand(new GliderCommand(this));
+	}
+
+	public void addCommand(Command command) {
+		lastCommand.setSuccessorCommand(command);
+		lastCommand = command;
 	}
 
 	public void setInput(InputStream input) {
@@ -52,13 +68,8 @@ public class TextUI implements Observer {
 		redraw();
 	}
 
-	public void addCommand(Command command) {
-		lastCommand.setSuccessorCommand(command);
-		lastCommand = command;
-	}
-
 	public void redraw() {
-		boolean[][] cells = grid.getCells();
+		boolean[][] cells = controller.getCells();
 
 		drawLineBreak();
 		drawHorizontalBorder();
@@ -80,7 +91,7 @@ public class TextUI implements Observer {
 	}
 
 	private void drawHorizontalBorder() {
-		int length = grid.getCells()[0].length;
+		int length = controller.getNumberOfColumns();
 		drawVerticalBorder();
 		for (int i = 0; i < length; i++) {
 			writeOut("-");
@@ -173,5 +184,19 @@ public class TextUI implements Observer {
 			argsPart = line.substring(indexOfFirstSpace);
 		}
 		return new Args(argsPart);
+	}
+
+	public void startReadAndInterpretLoop() {
+		while (runGame) {
+			readAndInterpretFromInput();
+		}
+	}
+
+	public void quit() {
+		runGame = false;
+	}
+
+	public GridController getGridController() {
+		return controller;
 	}
 }

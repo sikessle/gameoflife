@@ -6,6 +6,8 @@ public interface Grid extends Observable {
 
 	boolean[][] getCells();
 
+	void setCells(boolean[][] cells);
+
 	int getNumberOfRows();
 
 	int getNumberOfColumns();

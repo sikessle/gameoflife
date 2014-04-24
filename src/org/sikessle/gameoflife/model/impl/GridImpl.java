@@ -24,8 +24,8 @@ public class GridImpl implements Grid {
 		}
 		this.generationStrategy = generationStrategy;
 		observable = new ObservableImpl();
-		rows = 1;
-		columns = 1;
+		rows = 10;
+		columns = 10;
 		createGrid();
 	}
 
@@ -65,6 +65,19 @@ public class GridImpl implements Grid {
 	@Override
 	public boolean[][] getCells() {
 		return cells;
+	}
+
+	@Override
+	public void setCells(boolean[][] cells) {
+		if (cells == null) {
+			throw new NullPointerException();
+		}
+		if (cells.length == 0) {
+			throw new IndexOutOfBoundsException();
+		}
+		this.rows = cells.length;
+		this.columns = cells[0].length;
+		setChangedAndNotify();
 	}
 
 	private void setChangedAndNotify() {

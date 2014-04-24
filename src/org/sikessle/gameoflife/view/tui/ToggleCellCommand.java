@@ -2,22 +2,22 @@ package org.sikessle.gameoflife.view.tui;
 
 import java.util.Iterator;
 
-import org.sikessle.gameoflife.controller.Controller;
+import org.sikessle.gameoflife.controller.GridController;
 
 public class ToggleCellCommand extends Command {
 
-	private final Controller controller;
+	private final GridController controller;
 	private String command;
 	private Args arguments;
 	private int row;
 	private int column;
 	private static final String DESCRIPTION = "t [x] [y]: toggle cell";
 
-	public ToggleCellCommand(Controller controller) {
-		if (controller == null) {
+	public ToggleCellCommand(TextView ui) {
+		if (ui == null) {
 			throw new NullPointerException();
 		}
-		this.controller = controller;
+		this.controller = ui.getGridController();
 	}
 
 	@Override

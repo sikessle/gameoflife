@@ -5,15 +5,15 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JTextField;
 
-import org.sikessle.gameoflife.controller.Controller;
+import org.sikessle.gameoflife.controller.GridController;
 
 public class SetGridSizeAction implements ActionListener {
 
 	private final JTextField rowsField;
 	private final JTextField columnsField;
-	private final Controller controller;
+	private final GridController controller;
 
-	public SetGridSizeAction(Controller controller, JTextField rowsField,
+	public SetGridSizeAction(GridController controller, JTextField rowsField,
 			JTextField columnsField) {
 		if (controller == null || rowsField == null || columnsField == null) {
 			throw new NullPointerException();

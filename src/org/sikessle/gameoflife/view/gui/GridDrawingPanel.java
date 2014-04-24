@@ -9,14 +9,13 @@ import java.util.Observer;
 import javax.swing.JPanel;
 import javax.swing.event.MouseInputAdapter;
 
-import org.sikessle.gameoflife.controller.Controller;
-import org.sikessle.gameoflife.model.Grid;
+import org.sikessle.gameoflife.controller.GridController;
 
 public class GridDrawingPanel extends JPanel implements Observer {
 
 	private static final long serialVersionUID = 4724075972585639540L;
 
-	private final Grid grid;
+	private final GridController controller;
 
 	private final Color backgroundColor = new Color(0, 0, 0);
 	private final Color livingCellColor = new Color(0, 176, 255);
@@ -25,18 +24,18 @@ public class GridDrawingPanel extends JPanel implements Observer {
 
 	private static final int CELL_SIZE = 30;
 
-	public GridDrawingPanel(Grid grid, Controller controller) {
-		if (grid == null || controller == null) {
+	public GridDrawingPanel(GridController controller) {
+		if (controller == null) {
 			throw new NullPointerException();
 		}
 
-		this.grid = grid;
+		this.controller = controller;
 		setBackground(backgroundColor);
 		MouseInputAdapter livingCellsSetter = new SetLivingCellsMouseListener(
 				controller, CELL_SIZE);
 		addMouseListener(livingCellsSetter);
 		addMouseMotionListener(livingCellsSetter);
-		grid.addObserver(this);
+		controller.addObserver(this);
 	}
 
 	@Override
@@ -47,8 +46,8 @@ public class GridDrawingPanel extends JPanel implements Observer {
 
 	@Override
 	public Dimension getPreferredSize() {
-		int rows = grid.getNumberOfRows();
-		int columns = grid.getNumberOfColumns();
+		int rows = controller.getNumberOfRows();
+		int columns = controller.getNumberOfColumns();
 
 		Dimension size = new Dimension(columns * CELL_SIZE, rows * CELL_SIZE);
 		return size;
@@ -62,7 +61,7 @@ public class GridDrawingPanel extends JPanel implements Observer {
 	}
 
 	private void drawGrid() {
-		boolean[][] cells = grid.getCells();
+		boolean[][] cells = controller.getCells();
 		int x, y;
 
 		y = 0;

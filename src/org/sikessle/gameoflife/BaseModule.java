@@ -1,5 +1,9 @@
-package org.sikessle.gameoflife.model;
+package org.sikessle.gameoflife;
 
+import org.sikessle.gameoflife.controller.GridController;
+import org.sikessle.gameoflife.controller.impl.GridControllerImpl;
+import org.sikessle.gameoflife.model.GenerationStrategy;
+import org.sikessle.gameoflife.model.Grid;
 import org.sikessle.gameoflife.model.impl.GridImpl;
 import org.sikessle.gameoflife.model.impl.PluggableGenerationStrategy;
 
@@ -11,6 +15,7 @@ public class BaseModule extends AbstractModule {
 	protected void configure() {
 		bind(Grid.class).to(GridImpl.class);
 		bind(GenerationStrategy.class).to(PluggableGenerationStrategy.class);
+		bind(GridController.class).to(GridControllerImpl.class);
 	}
 
 }

@@ -1,19 +1,19 @@
 package org.sikessle.gameoflife.view.tui;
 
-import org.sikessle.gameoflife.controller.Controller;
+import org.sikessle.gameoflife.controller.GridController;
 
 public class StepOneGenerationCommand extends Command {
 
-	private final Controller controller;
+	private final GridController controller;
 	private String command;
 	private Args arguments;
 	private static final String DESCRIPTION = "n: step 1 generation";
 
-	public StepOneGenerationCommand(Controller controller) {
-		if (controller == null) {
+	public StepOneGenerationCommand(TextView ui) {
+		if (ui == null) {
 			throw new NullPointerException();
 		}
-		this.controller = controller;
+		this.controller = ui.getGridController();
 	}
 
 	@Override

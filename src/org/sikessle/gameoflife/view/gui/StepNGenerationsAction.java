@@ -7,18 +7,18 @@ import java.util.TimerTask;
 
 import javax.swing.JTextField;
 
-import org.sikessle.gameoflife.controller.Controller;
+import org.sikessle.gameoflife.controller.GridController;
 
 public class StepNGenerationsAction implements ActionListener {
 
-	private final Controller controller;
+	private final GridController controller;
 	private final JTextField textField;
 
 	private int numberOfGenerations;
 	private static final int GENERATIONS_DELAY = 100;
 	private Timer generationsTimer;
 
-	public StepNGenerationsAction(Controller controller, JTextField textField) {
+	public StepNGenerationsAction(GridController controller, JTextField textField) {
 		if (controller == null || textField == null) {
 			throw new NullPointerException();
 		}

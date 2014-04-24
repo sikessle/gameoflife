@@ -1,17 +1,17 @@
 package org.sikessle.gameoflife.view.tui;
 
-import org.sikessle.gameoflife.controller.Controller;
+import org.sikessle.gameoflife.controller.GridController;
 
 public class GliderCommand extends Command {
 
-	private final Controller controller;
+	private final GridController controller;
 	private static final String DESCRIPTION = "g: generate glider";
 
-	public GliderCommand(Controller controller) {
-		if (controller == null) {
+	public GliderCommand(TextView ui) {
+		if (ui == null) {
 			throw new NullPointerException();
 		}
-		this.controller = controller;
+		this.controller = ui.getGridController();
 	}
 
 	@Override

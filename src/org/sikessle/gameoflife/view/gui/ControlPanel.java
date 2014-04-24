@@ -10,8 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import org.sikessle.gameoflife.controller.Controller;
-import org.sikessle.gameoflife.model.Grid;
+import org.sikessle.gameoflife.controller.GridController;
 
 public class ControlPanel extends JPanel implements Observer {
 
@@ -19,8 +18,7 @@ public class ControlPanel extends JPanel implements Observer {
 
 	protected static final long GENERATIONS_DELAY = 100;
 
-	private final Grid grid;
-	private final Controller controller;
+	private final GridController controller;
 
 	private JButton stepNGenerationsBtn;
 	private JButton stopStepNGenerationsBtn;
@@ -30,16 +28,15 @@ public class ControlPanel extends JPanel implements Observer {
 	private JTextField rowsField;
 	private JTextField columnsField;
 
-	public ControlPanel(Grid grid, Controller controller) {
-		if (grid == null || controller == null) {
+	public ControlPanel(GridController controller) {
+		if (controller == null) {
 			throw new NullPointerException();
 		}
 
-		this.grid = grid;
 		this.controller = controller;
 
 		buildControls();
-		grid.addObserver(this);
+		controller.addObserver(this);
 	}
 
 	private void buildControls() {
@@ -100,8 +97,8 @@ public class ControlPanel extends JPanel implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		String rowsText = String.valueOf(grid.getNumberOfRows());
-		String columnsText = String.valueOf(grid.getNumberOfColumns());
+		String rowsText = String.valueOf(controller.getNumberOfRows());
+		String columnsText = String.valueOf(controller.getNumberOfColumns());
 
 		rowsField.setText(rowsText);
 		columnsField.setText(columnsText);

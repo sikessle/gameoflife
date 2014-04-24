@@ -1,23 +1,21 @@
 package org.sikessle.gameoflife.view.tui;
 
-import org.sikessle.gameoflife.controller.Controller;
-
 public class QuitCommand extends Command {
 
-	private final Controller controller;
+	private final TextView ui;
 	private static final String DESCRIPTION = "q: quit";
 
-	public QuitCommand(Controller controller) {
-		if (controller == null) {
+	public QuitCommand(TextView ui) {
+		if (ui == null) {
 			throw new NullPointerException();
 		}
-		this.controller = controller;
+		this.ui = ui;
 	}
 
 	@Override
 	public void handleIfResponsible(String command, Args arguments) {
 		if (command.equals("q")) {
-			controller.quit();
+			ui.quit();
 		}
 	}
 

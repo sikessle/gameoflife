@@ -2,22 +2,22 @@ package org.sikessle.gameoflife.view.tui;
 
 import java.util.Iterator;
 
-import org.sikessle.gameoflife.controller.Controller;
+import org.sikessle.gameoflife.controller.GridController;
 
 public class SetGridSizeCommand extends Command {
 
-	private final Controller controller;
+	private final GridController controller;
 	private String command;
 	private Args arguments;
 	private int rows;
 	private int columns;
 	private static final String DESCRIPTION = "s [x] [y]: set grid size";
 
-	public SetGridSizeCommand(Controller controller) {
-		if (controller == null) {
+	public SetGridSizeCommand(TextView ui) {
+		if (ui == null) {
 			throw new NullPointerException();
 		}
-		this.controller = controller;
+		this.controller = ui.getGridController();
 	}
 
 	@Override

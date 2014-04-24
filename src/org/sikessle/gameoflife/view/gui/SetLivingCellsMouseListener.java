@@ -4,14 +4,14 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.event.MouseInputAdapter;
 
-import org.sikessle.gameoflife.controller.Controller;
+import org.sikessle.gameoflife.controller.GridController;
 
 public class SetLivingCellsMouseListener extends MouseInputAdapter {
 
-	private final Controller controller;
+	private final GridController controller;
 	private final int cellSize;
 
-	public SetLivingCellsMouseListener(Controller controller, int cellSize) {
+	public SetLivingCellsMouseListener(GridController controller, int cellSize) {
 		if (controller == null) {
 			throw new NullPointerException();
 		}
