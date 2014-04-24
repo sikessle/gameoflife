@@ -25,7 +25,7 @@ public class GridImpl implements Grid {
 		this.generationStrategy = generationStrategy;
 		observable = new ObservableImpl();
 		rows = 10;
-		columns = 10;
+		columns = 20;
 		createGrid();
 	}
 
@@ -34,7 +34,8 @@ public class GridImpl implements Grid {
 	}
 
 	@Override
-	public void setGenerationStrategy(GenerationStrategyPlugin generationStrategy) {
+	public void setGenerationStrategy(
+			GenerationStrategyPlugin generationStrategy) {
 		if (generationStrategy == null) {
 			throw new NullPointerException();
 		}

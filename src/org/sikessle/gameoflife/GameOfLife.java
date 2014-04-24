@@ -2,6 +2,7 @@ package org.sikessle.gameoflife;
 
 import org.sikessle.gameoflife.controller.GridController;
 import org.sikessle.gameoflife.persistence.db4o.Db4oModule;
+import org.sikessle.gameoflife.view.gui.SwingView;
 import org.sikessle.gameoflife.view.tui.TextView;
 
 import com.google.inject.Guice;

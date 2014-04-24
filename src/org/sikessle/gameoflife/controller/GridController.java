@@ -7,9 +7,9 @@ import org.sikessle.gameoflife.util.Observable;
 
 public interface GridController extends Observer, Observable {
 
-	void saveGame(String gameName);
+	boolean saveGame(String gameName);
 
-	void loadGame(String gameName);
+	boolean loadGame(String gameName);
 
 	List<String> listGames();
 

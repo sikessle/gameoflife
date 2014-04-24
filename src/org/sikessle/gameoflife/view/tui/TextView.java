@@ -41,6 +41,7 @@ public class TextView implements Observer {
 	private void addCommands() {
 		firstCommand = lastCommand = new NullCommand();
 		addCommand(new QuitCommand(this));
+		addCommand(new ClearGridCommand(this));
 		addCommand(new ListSavedGamesCommand(this));
 		addCommand(new LoadGameCommand(this));
 		addCommand(new SaveGameCommand(this));

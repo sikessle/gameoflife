@@ -40,23 +40,28 @@ public class GridDb4oDao implements GridDao {
 	}
 
 	@Override
-	public void saveOrUpdate(Grid grid, String gameName) {
+	public boolean saveOrUpdate(Grid grid, String gameName) {
 		if (grid == null || gameName == null) {
 			throw new NullPointerException();
 		}
 		GridDto gridDto = converter.convertDomainToDto(grid, gameName);
+		// make sure only one object with the game name exists in the database
+		delete(gameName);
 		db.store(gridDto);
+		return true;
 	}
 
 	@Override
-	public void delete(String gameName) {
+	public boolean delete(String gameName) {
 		if (gameName == null) {
 			throw new NullPointerException();
 		}
 		GridDto found = findByName(gameName);
 		if (found != null) {
 			db.delete(found);
+			return true;
 		}
+		return false;
 	}
 
 	@Override

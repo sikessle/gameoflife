@@ -29,8 +29,13 @@ public class SaveGameCommand extends Command {
 
 	@Override
 	protected void execute() {
-		controller.saveGame(gameName);
-		ui.addLineToHeaderOutput("Game saved under " + gameName);
+		boolean successfullySaved = controller.saveGame(gameName);
+
+		if (successfullySaved) {
+			ui.addLineToHeaderOutput("Game saved under " + gameName);
+		} else {
+			ui.addLineToHeaderOutput("Failed to save game under " + gameName);
+		}
 		ui.redraw();
 	}
 

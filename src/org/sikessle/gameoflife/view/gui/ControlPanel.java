@@ -22,7 +22,7 @@ public class ControlPanel extends JPanel implements Observer {
 
 	private JButton stepNGenerationsBtn;
 	private JButton stopStepNGenerationsBtn;
-	private JButton setGridSizeBtn;
+	private JLabel setGridSizeLabel;
 	private JButton resetGrid;
 	private JTextField stepNGenerationsField;
 	private JTextField rowsField;
@@ -37,6 +37,7 @@ public class ControlPanel extends JPanel implements Observer {
 
 		buildControls();
 		controller.addObserver(this);
+		updateRowAndColumnFields();
 	}
 
 	private void buildControls() {
@@ -48,8 +49,8 @@ public class ControlPanel extends JPanel implements Observer {
 	}
 
 	private void buildStepNGenerationsControls() {
-		stepNGenerationsBtn = new JButton("Zeige Generationen");
-		stopStepNGenerationsBtn = new JButton("Stop");
+		stepNGenerationsBtn = new JButton("step >");
+		stopStepNGenerationsBtn = new JButton("stop");
 		stepNGenerationsField = new JTextField(String.valueOf(1), 3);
 
 		final StepNGenerationsAction stepGenerationsAction = new StepNGenerationsAction(
@@ -64,16 +65,18 @@ public class ControlPanel extends JPanel implements Observer {
 	}
 
 	private void buildGridSizeControls() {
-		setGridSizeBtn = new JButton("Gittergr\u00F6\u00dfe setzen:");
+		setGridSizeLabel = new JLabel("grid size: ");
 		rowsField = new JTextField(2);
 		columnsField = new JTextField(2);
 
-		setGridSizeBtn.addActionListener(new SetGridSizeAction(controller,
+		rowsField.addActionListener(new SetGridSizeAction(controller,
+				rowsField, columnsField));
+		columnsField.addActionListener(new SetGridSizeAction(controller,
 				rowsField, columnsField));
 	}
 
 	private void buildResetGridControls() {
-		resetGrid = new JButton("Reset");
+		resetGrid = new JButton("clear");
 		resetGrid.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -86,10 +89,10 @@ public class ControlPanel extends JPanel implements Observer {
 		JLabel rowColumnSeparator = new JLabel("x");
 
 		add(resetGrid);
-		add(stepNGenerationsField);
 		add(stepNGenerationsBtn);
+		add(stepNGenerationsField);
 		add(stopStepNGenerationsBtn);
-		add(setGridSizeBtn);
+		add(setGridSizeLabel);
 		add(rowsField);
 		add(rowColumnSeparator);
 		add(columnsField);
@@ -97,6 +100,10 @@ public class ControlPanel extends JPanel implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
+		updateRowAndColumnFields();
+	}
+
+	private void updateRowAndColumnFields() {
 		String rowsText = String.valueOf(controller.getNumberOfRows());
 		String columnsText = String.valueOf(controller.getNumberOfColumns());
 

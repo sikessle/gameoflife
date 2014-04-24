@@ -8,9 +8,9 @@ public interface GridDao {
 
 	Grid getByName(String gameName);
 
-	void saveOrUpdate(Grid grid, String gameName);
+	boolean saveOrUpdate(Grid grid, String gameName);
 
-	void delete(String gameName);
+	boolean delete(String gameName);
 
 	List<String> getAllGameNames();
 

@@ -29,8 +29,14 @@ public class LoadGameCommand extends Command {
 
 	@Override
 	protected void execute() {
-		ui.addLineToHeaderOutput("Game loaded: " + gameToLoad);
-		controller.loadGame(gameToLoad);
+		boolean successfullyLoaded = controller.loadGame(gameToLoad);
+
+		if (successfullyLoaded) {
+			ui.addLineToHeaderOutput("Game loaded: " + gameToLoad);
+		} else {
+			ui.addLineToHeaderOutput("Failed to load game: " + gameToLoad);
+		}
+		ui.redraw();
 	}
 
 	private void parseArguments() {

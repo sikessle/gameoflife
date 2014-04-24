@@ -30,19 +30,21 @@ public class GridControllerImpl implements GridController {
 	}
 
 	@Override
-	public void saveGame(String gameName) {
-		gridDao.saveOrUpdate(grid, gameName);
+	public boolean saveGame(String gameName) {
+		return gridDao.saveOrUpdate(grid, gameName);
 	}
 
 	@Override
-	public void loadGame(String gameName) {
+	public boolean loadGame(String gameName) {
 		Grid loadedGrid = gridDao.getByName(gameName);
 		if (loadedGrid != null) {
 			loadedGrid.addObserver(this);
 			grid = loadedGrid;
 			observable.setChanged();
 			observable.notifyObservers();
+			return true;
 		}
+		return false;
 	}
 
 	@Override
