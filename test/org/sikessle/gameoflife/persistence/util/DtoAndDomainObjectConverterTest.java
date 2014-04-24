@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.sikessle.gameoflife.BaseModule;
 import org.sikessle.gameoflife.model.Grid;
 import org.sikessle.gameoflife.persistence.db4o.Db4oModule;
+import org.sikessle.gameoflife.persistence.db4o.GridDb4oDto;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -25,7 +26,7 @@ public class DtoAndDomainObjectConverterTest {
 	@Test
 	public void convertDtoToDomain() {
 		boolean[][] cells = { { true, true }, { false, true }, { false, false } };
-		GridDto gridDto = new GridDto();
+		GridDto gridDto = new GridDb4oDto();
 		gridDto.setCells(cells);
 		Grid grid = converter.convertDtoToDomain(gridDto);
 		boolean[][] domainCells = grid.getCells();

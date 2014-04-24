@@ -67,7 +67,7 @@ public class GridDb4oDao implements GridDao {
 	@Override
 	public List<String> getAllGameNames() {
 		List<String> result = new LinkedList<String>();
-		ObjectSet<GridDto> grids = db.query(GridDto.class);
+		ObjectSet<GridDb4oDto> grids = db.query(GridDb4oDto.class);
 
 		for (GridDto grid : grids) {
 			result.add(grid.getGameName());
@@ -78,9 +78,9 @@ public class GridDb4oDao implements GridDao {
 
 	@SuppressWarnings("serial")
 	private GridDto findByName(final String gameName) {
-		ObjectSet<GridDto> grids = db.query(new Predicate<GridDto>() {
+		ObjectSet<GridDb4oDto> grids = db.query(new Predicate<GridDb4oDto>() {
 			@Override
-			public boolean match(GridDto grid) {
+			public boolean match(GridDb4oDto grid) {
 				return grid.getGameName().equals(gameName);
 			}
 		});
