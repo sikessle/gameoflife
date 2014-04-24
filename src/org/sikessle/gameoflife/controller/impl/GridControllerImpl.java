@@ -38,9 +38,10 @@ public class GridControllerImpl implements GridController {
 	public void loadGame(String gameName) {
 		Grid loadedGrid = gridDao.getByName(gameName);
 		if (loadedGrid != null) {
-			grid.deleteObserver(this);
 			loadedGrid.addObserver(this);
 			grid = loadedGrid;
+			observable.setChanged();
+			observable.notifyObservers();
 		}
 	}
 
@@ -108,6 +109,11 @@ public class GridControllerImpl implements GridController {
 	public void update(Observable o, Object arg) {
 		observable.setChanged();
 		observable.notifyObservers();
+	}
+
+	@Override
+	public String getGenerationStrategyName() {
+		return grid.getGenerationStrategy().getName();
 	}
 
 }

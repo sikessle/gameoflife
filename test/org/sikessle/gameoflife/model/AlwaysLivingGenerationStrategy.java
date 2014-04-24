@@ -1,6 +1,11 @@
 package org.sikessle.gameoflife.model;
 
-public class AlwaysLivingGenerationStrategy extends GenerationStrategy {
+public class AlwaysLivingGenerationStrategy extends GenerationStrategyPlugin {
+
+	@Override
+	public String getName() {
+		return "Always Living";
+	}
 
 	@Override
 	protected boolean nextStateOfLivingCell(int livingNeighbors) {

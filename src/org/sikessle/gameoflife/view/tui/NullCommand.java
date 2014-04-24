@@ -3,7 +3,12 @@ package org.sikessle.gameoflife.view.tui;
 public class NullCommand extends Command {
 
 	@Override
-	public void handleIfResponsible(String command, Args arguments) {
+	protected boolean isResponsible() {
+		return false;
+	}
+
+	@Override
+	protected void execute() {
 	}
 
 	@Override

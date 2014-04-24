@@ -7,11 +7,10 @@ import org.sikessle.gameoflife.controller.GridController;
 public class StepNGenerationsCommand extends Command {
 
 	private final GridController controller;
-	private String command;
-	private Args arguments;
 	private int frames;
 	private static final int DELAY_BETWEEN_FRAMES_MS = 100;
-	private static final String DESCRIPTION = "n [x]: step x generations";
+	private static final String KEY = "n";
+	private static final String DESCRIPTION = KEY + " [x]: step x generations";
 
 	public StepNGenerationsCommand(TextView ui) {
 		if (ui == null) {
@@ -21,15 +20,14 @@ public class StepNGenerationsCommand extends Command {
 	}
 
 	@Override
-	public void handleIfResponsible(String command, Args arguments) {
-		this.command = command;
-		this.arguments = arguments;
-
+	protected boolean isResponsible() {
 		parseArguments();
+		return command.equals(KEY) && argsAreValid();
+	}
 
-		if (isCorrectCommand()) {
-			startAnimation();
-		}
+	@Override
+	protected void execute() {
+		startAnimation();
 	}
 
 	private void parseArguments() {
@@ -46,16 +44,8 @@ public class StepNGenerationsCommand extends Command {
 		}
 	}
 
-	private boolean isCorrectCommand() {
-		if (!command.equals("n") || argsNotValid()) {
-			return false;
-		}
-
-		return true;
-	}
-
-	private boolean argsNotValid() {
-		return frames <= 0;
+	private boolean argsAreValid() {
+		return frames > 0;
 	}
 
 	private void startAnimation() {

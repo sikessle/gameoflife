@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class GenerationStrategyTest {
 
-	private GenerationStrategy strategy;
+	private GenerationStrategyPlugin strategy;
 
 	@Test(expected = NullPointerException.class)
 	public void testGetNextGenerationWithNullArgument() {

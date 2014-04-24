@@ -7,11 +7,10 @@ import org.sikessle.gameoflife.controller.GridController;
 public class ToggleCellCommand extends Command {
 
 	private final GridController controller;
-	private String command;
-	private Args arguments;
-	private int row;
-	private int column;
-	private static final String DESCRIPTION = "t [x] [y]: toggle cell";
+	private int row = -1;
+	private int column = -1;
+	private static final String KEY = "t";
+	private static final String DESCRIPTION = KEY + " [x] [y]: toggle cell";
 
 	public ToggleCellCommand(TextView ui) {
 		if (ui == null) {
@@ -21,15 +20,14 @@ public class ToggleCellCommand extends Command {
 	}
 
 	@Override
-	public void handleIfResponsible(String command, Args arguments) {
-		this.command = command;
-		this.arguments = arguments;
-
+	protected boolean isResponsible() {
 		parseArguments();
+		return command.equals(KEY) && argsAreValid();
+	}
 
-		if (isCorrectCommand()) {
-			toggleCell();
-		}
+	@Override
+	protected void execute() {
+		toggleCell();
 	}
 
 	private void toggleCell() {
@@ -56,16 +54,8 @@ public class ToggleCellCommand extends Command {
 		}
 	}
 
-	private boolean isCorrectCommand() {
-		if (!command.equals("t") || argsNotValid()) {
-			return false;
-		}
-
-		return true;
-	}
-
-	private boolean argsNotValid() {
-		return row < 0 || column < 0;
+	private boolean argsAreValid() {
+		return row >= 0 && column >= 0;
 	}
 
 	@Override

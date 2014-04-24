@@ -5,8 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.sikessle.gameoflife.plugin.GenerationStrategyPlugin;
-import org.sikessle.gameoflife.plugin.impl.OriginalGenerationStrategy;
+import org.sikessle.gameoflife.model.impl.OriginalGenerationStrategy;
 
 public class OriginalGenerationStrategyTest {
 

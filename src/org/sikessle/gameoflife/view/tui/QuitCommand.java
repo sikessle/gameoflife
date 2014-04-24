@@ -3,7 +3,8 @@ package org.sikessle.gameoflife.view.tui;
 public class QuitCommand extends Command {
 
 	private final TextView ui;
-	private static final String DESCRIPTION = "q: quit";
+	private static final String KEY = "q";
+	private static final String DESCRIPTION = KEY + ": quit";
 
 	public QuitCommand(TextView ui) {
 		if (ui == null) {
@@ -13,10 +14,13 @@ public class QuitCommand extends Command {
 	}
 
 	@Override
-	public void handleIfResponsible(String command, Args arguments) {
-		if (command.equals("q")) {
-			ui.quit();
-		}
+	protected boolean isResponsible() {
+		return command.equals(KEY) && arguments.size() == 0;
+	}
+
+	@Override
+	public void execute() {
+		ui.quit();
 	}
 
 	@Override

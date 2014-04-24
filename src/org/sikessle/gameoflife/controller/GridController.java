@@ -31,4 +31,6 @@ public interface GridController extends Observer, Observable {
 
 	boolean[][] getCells();
 
+	String getGenerationStrategyName();
+
 }

@@ -5,7 +5,8 @@ import org.sikessle.gameoflife.controller.GridController;
 public class GliderCommand extends Command {
 
 	private final GridController controller;
-	private static final String DESCRIPTION = "g: generate glider";
+	private static final String KEY = "g";
+	private static final String DESCRIPTION = KEY + ": generate glider";
 
 	public GliderCommand(TextView ui) {
 		if (ui == null) {
@@ -15,10 +16,13 @@ public class GliderCommand extends Command {
 	}
 
 	@Override
-	public void handleIfResponsible(String command, Args arguments) {
-		if (command.equals("g")) {
-			showGlider();
-		}
+	protected boolean isResponsible() {
+		return command.equals(KEY) && arguments.size() == 0;
+	}
+
+	@Override
+	public void execute() {
+		showGlider();
 	}
 
 	private void showGlider() {

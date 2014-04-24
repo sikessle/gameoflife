@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.Queue;
 import java.util.Scanner;
 
 import org.sikessle.gameoflife.controller.GridController;
@@ -15,19 +16,21 @@ public class TextView implements Observer {
 	private final GridController controller;
 	private Scanner scanner;
 	private PrintStream output;
-	private final Command firstCommand;
+	private Command firstCommand;
 	private Command lastCommand;
 	private boolean runGame = true;
+	private final Queue<String> additionalHeaderOutput;
 
 	public TextView(GridController controller) {
 		if (controller == null) {
 			throw new NullPointerException();
 		}
 		this.controller = controller;
-		firstCommand = lastCommand = new NullCommand();
+		additionalHeaderOutput = new LinkedList<String>();
 		addCommands();
 		setDefaultInputOutput();
 		controller.addObserver(this);
+		redraw();
 	}
 
 	private void setDefaultInputOutput() {
@@ -36,7 +39,11 @@ public class TextView implements Observer {
 	}
 
 	private void addCommands() {
+		firstCommand = lastCommand = new NullCommand();
 		addCommand(new QuitCommand(this));
+		addCommand(new ListSavedGamesCommand(this));
+		addCommand(new LoadGameCommand(this));
+		addCommand(new SaveGameCommand(this));
 		addCommand(new SetGridSizeCommand(this));
 		addCommand(new StepOneGenerationCommand(this));
 		addCommand(new StepNGenerationsCommand(this));
@@ -44,7 +51,7 @@ public class TextView implements Observer {
 		addCommand(new GliderCommand(this));
 	}
 
-	public void addCommand(Command command) {
+	private void addCommand(Command command) {
 		lastCommand.setSuccessorCommand(command);
 		lastCommand = command;
 	}
@@ -72,6 +79,10 @@ public class TextView implements Observer {
 		boolean[][] cells = controller.getCells();
 
 		drawLineBreak();
+		drawAndFlushAdditionalHeaderOutput();
+		drawLineBreak();
+		drawGenerationStrategy();
+		drawLineBreak();
 		drawHorizontalBorder();
 		for (int i = 0; i < cells.length; i++) {
 			drawVerticalBorder();
@@ -84,6 +95,26 @@ public class TextView implements Observer {
 		drawHorizontalBorder();
 		drawLineBreak();
 		drawAvailableCommands();
+	}
+
+	private void drawAndFlushAdditionalHeaderOutput() {
+		for (String header : additionalHeaderOutput) {
+			writeOut(header);
+			drawLineBreak();
+		}
+		additionalHeaderOutput.clear();
+	}
+
+	private void drawGenerationStrategy() {
+		writeOut("Generation Strategy: ");
+		writeOut(controller.getGenerationStrategyName());
+	}
+
+	public void addLineToHeaderOutput(String header) {
+		if (header == null) {
+			return;
+		}
+		additionalHeaderOutput.add(header);
 	}
 
 	private void drawVerticalBorder() {
@@ -142,10 +173,16 @@ public class TextView implements Observer {
 		output.print(text);
 	}
 
+	public void readAndInterpretInLoopFromInputStream() {
+		while (runGame) {
+			readAndInterpretFromInputStream();
+		}
+	}
+
 	/**
 	 * Reads and interprets from the set input stream.
 	 */
-	public void readAndInterpretFromInput() {
+	public void readAndInterpretFromInputStream() {
 		if (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
 			interpretLine(line);
@@ -184,12 +221,6 @@ public class TextView implements Observer {
 			argsPart = line.substring(indexOfFirstSpace);
 		}
 		return new Args(argsPart);
-	}
-
-	public void startReadAndInterpretLoop() {
-		while (runGame) {
-			readAndInterpretFromInput();
-		}
 	}
 
 	public void quit() {

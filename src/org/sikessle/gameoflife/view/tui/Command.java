@@ -3,6 +3,8 @@ package org.sikessle.gameoflife.view.tui;
 public abstract class Command {
 
 	private Command successor;
+	protected String command;
+	protected Args arguments;
 
 	public void setSuccessorCommand(Command successor) {
 		this.successor = successor;
@@ -12,18 +14,24 @@ public abstract class Command {
 		return successor;
 	}
 
-	private void passOnToSuccessor(String command, Args arguments) {
+	public void handle(String command, Args arguments) {
+		this.command = command;
+		this.arguments = arguments;
+		if (isResponsible()) {
+			execute();
+		}
+		passOnToSuccessor();
+	}
+
+	private void passOnToSuccessor() {
 		if (successor != null) {
 			successor.handle(command, arguments);
 		}
 	}
 
-	public void handle(String command, Args arguments) {
-		handleIfResponsible(command, arguments);
-		passOnToSuccessor(command, arguments);
-	}
+	protected abstract void execute();
 
-	protected abstract void handleIfResponsible(String command, Args arguments);
+	protected abstract boolean isResponsible();
 
 	@Override
 	public abstract String toString();

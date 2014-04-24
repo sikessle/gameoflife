@@ -5,9 +5,8 @@ import org.sikessle.gameoflife.controller.GridController;
 public class StepOneGenerationCommand extends Command {
 
 	private final GridController controller;
-	private String command;
-	private Args arguments;
-	private static final String DESCRIPTION = "n: step 1 generation";
+	private static final String KEY = "n";
+	private static final String DESCRIPTION = KEY + ": step 1 generation";
 
 	public StepOneGenerationCommand(TextView ui) {
 		if (ui == null) {
@@ -17,21 +16,13 @@ public class StepOneGenerationCommand extends Command {
 	}
 
 	@Override
-	public void handleIfResponsible(String command, Args arguments) {
-		this.command = command;
-		this.arguments = arguments;
-
-		if (isCorrectCommand()) {
-			controller.stepOneGeneration();
-		}
+	protected boolean isResponsible() {
+		return command.equals(KEY) && arguments.size() == 0;
 	}
 
-	private boolean isCorrectCommand() {
-		if (!command.equals("n") || arguments.size() > 0) {
-			return false;
-		}
-
-		return true;
+	@Override
+	protected void execute() {
+		controller.stepOneGeneration();
 	}
 
 	@Override

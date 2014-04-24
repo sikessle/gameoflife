@@ -20,6 +20,8 @@ public interface Grid extends Observable {
 
 	void killAllCells();
 
-	void setGenerationStrategy(GenerationStrategy strategy);
+	void setGenerationStrategy(GenerationStrategyPlugin strategy);
+
+	GenerationStrategyPlugin getGenerationStrategy();
 
 }

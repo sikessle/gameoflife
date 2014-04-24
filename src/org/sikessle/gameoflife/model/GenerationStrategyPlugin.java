@@ -1,6 +1,6 @@
 package org.sikessle.gameoflife.model;
 
-public abstract class GenerationStrategy {
+public abstract class GenerationStrategyPlugin {
 
 	private boolean[][] currentGeneration;
 	private boolean[][] nextGeneration;
@@ -69,5 +69,7 @@ public abstract class GenerationStrategy {
 	protected abstract boolean nextStateOfLivingCell(int livingNeighbors);
 
 	protected abstract boolean nextStateOfDeadCell(int livingNeighbors);
+
+	public abstract String getName();
 
 }

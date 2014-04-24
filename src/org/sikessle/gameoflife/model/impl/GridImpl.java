@@ -3,7 +3,7 @@ package org.sikessle.gameoflife.model.impl;
 import java.util.Arrays;
 import java.util.Observer;
 
-import org.sikessle.gameoflife.model.GenerationStrategy;
+import org.sikessle.gameoflife.model.GenerationStrategyPlugin;
 import org.sikessle.gameoflife.model.Grid;
 import org.sikessle.gameoflife.util.ObservableImpl;
 
@@ -14,11 +14,11 @@ public class GridImpl implements Grid {
 	private boolean[][] cells;
 	private int rows;
 	private int columns;
-	private GenerationStrategy generationStrategy;
+	private GenerationStrategyPlugin generationStrategy;
 	private final ObservableImpl observable;
 
 	@Inject
-	public GridImpl(GenerationStrategy generationStrategy) {
+	public GridImpl(GenerationStrategyPlugin generationStrategy) {
 		if (generationStrategy == null) {
 			throw new NullPointerException();
 		}
@@ -34,7 +34,7 @@ public class GridImpl implements Grid {
 	}
 
 	@Override
-	public void setGenerationStrategy(GenerationStrategy generationStrategy) {
+	public void setGenerationStrategy(GenerationStrategyPlugin generationStrategy) {
 		if (generationStrategy == null) {
 			throw new NullPointerException();
 		}
@@ -77,6 +77,7 @@ public class GridImpl implements Grid {
 		}
 		this.rows = cells.length;
 		this.columns = cells[0].length;
+		this.cells = cells;
 		setChangedAndNotify();
 	}
 
@@ -131,6 +132,11 @@ public class GridImpl implements Grid {
 	@Override
 	public void deleteObserver(Observer observer) {
 		observable.deleteObserver(observer);
+	}
+
+	@Override
+	public GenerationStrategyPlugin getGenerationStrategy() {
+		return generationStrategy;
 	}
 
 }

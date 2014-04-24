@@ -15,11 +15,18 @@ public class GridDto {
 	}
 
 	public boolean[][] getCells() {
-		return cells;
+		return copyCells(cells);
 	}
 
 	public void setCells(boolean[][] cells) {
-		this.cells = cells;
+		this.cells = copyCells(cells);
 	}
 
+	private boolean[][] copyCells(boolean[][] source) {
+		boolean[][] copy = new boolean[source.length][];
+		for (int i = 0; i < source.length; i++) {
+			copy[i] = source[i].clone();
+		}
+		return copy;
+	}
 }

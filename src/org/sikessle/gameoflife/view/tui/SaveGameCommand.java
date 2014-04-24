@@ -4,18 +4,20 @@ import java.util.Iterator;
 
 import org.sikessle.gameoflife.controller.GridController;
 
-public class SetGridSizeCommand extends Command {
+public class SaveGameCommand extends Command {
 
 	private final GridController controller;
-	private int rows;
-	private int columns;
-	private static final String KEY = "s";
-	private static final String DESCRIPTION = KEY + " [x] [y]: set grid size";
+	private String gameName;
+	private final TextView ui;
+	private static final String KEY = "save";
+	private static final String DESCRIPTION = KEY
+			+ " [name]: save the game under the name";
 
-	public SetGridSizeCommand(TextView ui) {
+	public SaveGameCommand(TextView ui) {
 		if (ui == null) {
 			throw new NullPointerException();
 		}
+		this.ui = ui;
 		this.controller = ui.getGridController();
 	}
 
@@ -27,27 +29,22 @@ public class SetGridSizeCommand extends Command {
 
 	@Override
 	protected void execute() {
-		controller.setGridSize(rows, columns);
+		controller.saveGame(gameName);
+		ui.addLineToHeaderOutput("Game saved under " + gameName);
+		ui.redraw();
 	}
 
 	private void parseArguments() {
-		if (arguments.size() < 2) {
+		if (arguments.size() < 1) {
 			return;
 		}
 
 		Iterator<String> iterator = arguments.iterator();
-
-		try {
-			rows = Integer.parseInt(iterator.next());
-			columns = Integer.parseInt(iterator.next());
-		} catch (NumberFormatException e) {
-			rows = 0;
-			columns = 0;
-		}
+		gameName = iterator.next();
 	}
 
 	private boolean argsAreValid() {
-		return rows > 0 && columns > 0;
+		return gameName != null;
 	}
 
 	@Override
