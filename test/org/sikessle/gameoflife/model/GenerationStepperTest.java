@@ -3,34 +3,39 @@ package org.sikessle.gameoflife.model;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+import org.sikessle.gameoflife.model.impl.GenerationStepper;
 
-public class GenerationStrategyTest {
+public class GenerationStepperTest {
 
-	private GenerationStrategyPlugin strategy;
+	private GenerationStepper stepper;
 
 	@Test(expected = NullPointerException.class)
 	public void testGetNextGenerationWithNullArgument() {
-		strategy = new AlwaysLivingGenerationStrategy();
-		strategy.getNextGeneration(null);
+		setGenerationStepper(new AlwaysLivingGenerationStrategyPlugin());
+		stepper.getNextGeneration(null);
+	}
+
+	private void setGenerationStepper(GenerationStrategyPlugin strategy) {
+		stepper = new GenerationStepper(strategy);
 	}
 
 	@Test
 	public void testGetNextGenerationWithLivingStrategy() {
-		strategy = new AlwaysLivingGenerationStrategy();
+		setGenerationStepper(new AlwaysLivingGenerationStrategyPlugin());
 		boolean[][] cells = create3on3DeadGrid();
 		cells[0][0] = false;
 
-		boolean[][] nextGen = strategy.getNextGeneration(cells);
+		boolean[][] nextGen = stepper.getNextGeneration(cells);
 		assertEveryCellMatchesGivenValue(nextGen, true);
 	}
 
 	@Test
 	public void testGetNextGenerationWithDeadStrategy() {
-		strategy = new AlwaysDeadGenerationStrategy();
+		setGenerationStepper(new AlwaysDeadGenerationStrategyPlugin());
 		boolean[][] cells = create3on3DeadGrid();
 		cells[0][0] = true;
 
-		boolean[][] nextGen = strategy.getNextGeneration(cells);
+		boolean[][] nextGen = stepper.getNextGeneration(cells);
 		assertEveryCellMatchesGivenValue(nextGen, false);
 	}
 

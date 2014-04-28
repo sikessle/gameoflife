@@ -15,7 +15,7 @@ public class GridImplTest {
 
 	@Before
 	public void setUp() throws Exception {
-		grid = new GridImpl(new AlwaysDeadGenerationStrategy());
+		grid = new GridImpl(new AlwaysDeadGenerationStrategyPlugin());
 		observer = new ObserverDummy();
 	}
 
@@ -120,7 +120,7 @@ public class GridImplTest {
 
 	@Test
 	public void testSetGenerationStrategy() {
-		grid.setGenerationStrategy(new AlwaysLivingGenerationStrategy());
+		grid.setGenerationStrategy(new AlwaysLivingGenerationStrategyPlugin());
 		grid.stepNGenerations(1);
 		boolean cells[][] = grid.getCells();
 		assertTrue(cells[0][0]);

@@ -25,7 +25,7 @@ public class GridControllerImpl implements GridController {
 			throw new NullPointerException();
 		}
 		this.grid = grid;
-		this.grid.addObserver(this);
+		grid.addObserver(this);
 		observable = new ObservableImpl();
 	}
 
@@ -115,7 +115,7 @@ public class GridControllerImpl implements GridController {
 
 	@Override
 	public String getGenerationStrategyName() {
-		return grid.getGenerationStrategy().getName();
+		return grid.getGenerationStrategyName();
 	}
 
 }

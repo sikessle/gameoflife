@@ -2,7 +2,7 @@ package org.sikessle.gameoflife.model.impl;
 
 import org.sikessle.gameoflife.model.GenerationStrategyPlugin;
 
-public class CopyWorldGenerationStrategy extends GenerationStrategyPlugin {
+public class CopyWorldGenerationStrategy implements GenerationStrategyPlugin {
 
 	@Override
 	public String getName() {
@@ -10,7 +10,7 @@ public class CopyWorldGenerationStrategy extends GenerationStrategyPlugin {
 	}
 
 	@Override
-	protected boolean nextStateOfLivingCell(int livingNeighbors) {
+	public boolean nextStateOfLivingCell(int livingNeighbors) {
 		if (livingNeighbors % 2 == 0) {
 			return false;
 		}
@@ -18,7 +18,7 @@ public class CopyWorldGenerationStrategy extends GenerationStrategyPlugin {
 	}
 
 	@Override
-	protected boolean nextStateOfDeadCell(int livingNeighbors) {
+	public boolean nextStateOfDeadCell(int livingNeighbors) {
 		if (livingNeighbors % 2 != 0) {
 			return true;
 		}

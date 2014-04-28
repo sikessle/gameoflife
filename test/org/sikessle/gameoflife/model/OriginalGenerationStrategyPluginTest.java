@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.sikessle.gameoflife.model.impl.OriginalGenerationStrategy;
 
-public class OriginalGenerationStrategyTest {
+public class OriginalGenerationStrategyPluginTest {
 
 	private GenerationStrategyPlugin strategy;
 
@@ -18,7 +18,7 @@ public class OriginalGenerationStrategyTest {
 
 	@Test
 	public void testNextStateOfLivingCell() {
-		// must live on
+		// must stay alive
 		assertTrue(strategy.nextStateOfLivingCell(2));
 		assertTrue(strategy.nextStateOfLivingCell(3));
 

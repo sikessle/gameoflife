@@ -14,15 +14,12 @@ public class GridImpl implements Grid {
 	private boolean[][] cells;
 	private int rows;
 	private int columns;
-	private GenerationStrategyPlugin generationStrategy;
+	private final GenerationStepper generationStepper;
 	private final ObservableImpl observable;
 
 	@Inject
 	public GridImpl(GenerationStrategyPlugin generationStrategy) {
-		if (generationStrategy == null) {
-			throw new NullPointerException();
-		}
-		this.generationStrategy = generationStrategy;
+		generationStepper = new GenerationStepper(generationStrategy);
 		observable = new ObservableImpl();
 		rows = 10;
 		columns = 20;
@@ -31,15 +28,6 @@ public class GridImpl implements Grid {
 
 	private void createGrid() {
 		cells = new boolean[rows][columns];
-	}
-
-	@Override
-	public void setGenerationStrategy(
-			GenerationStrategyPlugin generationStrategy) {
-		if (generationStrategy == null) {
-			throw new NullPointerException();
-		}
-		this.generationStrategy = generationStrategy;
 	}
 
 	@Override
@@ -96,7 +84,7 @@ public class GridImpl implements Grid {
 	}
 
 	private void stepOneGeneration() {
-		cells = generationStrategy.getNextGeneration(cells);
+		cells = generationStepper.getNextGeneration(cells);
 	}
 
 	@Override
@@ -136,8 +124,14 @@ public class GridImpl implements Grid {
 	}
 
 	@Override
-	public GenerationStrategyPlugin getGenerationStrategy() {
-		return generationStrategy;
+	public String getGenerationStrategyName() {
+		return generationStepper.getGenerationStrategy().getName();
+	}
+
+	@Override
+	public void setGenerationStrategy(
+			GenerationStrategyPlugin generationStrategy) {
+		this.generationStepper.setGenerationStrategy(generationStrategy);
 	}
 
 }
