@@ -140,10 +140,8 @@ public class GridHibernateDao implements GridDao {
 		if (currentTransaction != null) {
 			try {
 				currentTransaction.rollback();
-			} catch (HibernateException exRb) {
-				transactionException.addSuppressed(exRb);
-				throw new PersistenceException(
-						transactionException.getMessage());
+			} catch (HibernateException rollbackException) {
+				throw new PersistenceException(transactionException);
 			}
 		}
 	}
