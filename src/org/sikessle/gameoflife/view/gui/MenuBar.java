@@ -1,6 +1,6 @@
 package org.sikessle.gameoflife.view.gui;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
@@ -10,10 +10,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import org.sikessle.gameoflife.controller.GridController;
-import org.sikessle.gameoflife.figures.Figure;
-import org.sikessle.gameoflife.figures.impl.Glider;
-import org.sikessle.gameoflife.figures.impl.LightWeightSpaceship;
-import org.sikessle.gameoflife.figures.impl.RPentomino;
+import org.sikessle.gameoflife.model.Figure;
+import org.sikessle.gameoflife.model.impl.Glider;
+import org.sikessle.gameoflife.model.impl.LightWeightSpaceship;
+import org.sikessle.gameoflife.model.impl.RPentomino;
 
 public class MenuBar extends JMenuBar implements Observer {
 
@@ -70,7 +70,7 @@ public class MenuBar extends JMenuBar implements Observer {
 	}
 
 	private List<Figure> getFigures() {
-		List<Figure> figures = new LinkedList<Figure>();
+		List<Figure> figures = new ArrayList<Figure>();
 
 		figures.add(new Glider());
 		figures.add(new LightWeightSpaceship());

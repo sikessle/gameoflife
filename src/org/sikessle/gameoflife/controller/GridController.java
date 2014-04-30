@@ -3,6 +3,7 @@ package org.sikessle.gameoflife.controller;
 import java.util.List;
 import java.util.Observer;
 
+import org.sikessle.gameoflife.model.Figure;
 import org.sikessle.gameoflife.util.Observable;
 
 public interface GridController extends Observer, Observable {
@@ -32,5 +33,7 @@ public interface GridController extends Observer, Observable {
 	boolean[][] getCells();
 
 	String getGenerationStrategyName();
+
+	void spawnFigure(Figure figure, int row, int colum);
 
 }

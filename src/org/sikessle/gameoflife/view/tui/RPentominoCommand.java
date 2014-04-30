@@ -1,7 +1,7 @@
 package org.sikessle.gameoflife.view.tui;
 
-import org.sikessle.gameoflife.figures.Figure;
-import org.sikessle.gameoflife.figures.impl.RPentomino;
+import org.sikessle.gameoflife.model.Figure;
+import org.sikessle.gameoflife.model.impl.RPentomino;
 
 public class RPentominoCommand extends AbstractFigureCommand {
 

@@ -1,6 +1,6 @@
 package org.sikessle.gameoflife.persistence.db4o;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.sikessle.gameoflife.model.Grid;
@@ -73,7 +73,7 @@ public class GridDb4oDao implements GridDao {
 
 	@Override
 	public List<String> getAllGameNames() {
-		List<String> result = new LinkedList<String>();
+		List<String> result = new ArrayList<String>();
 		ObjectSet<GridDb4oDto> grids = db.query(GridDb4oDto.class);
 
 		for (GridDto grid : grids) {

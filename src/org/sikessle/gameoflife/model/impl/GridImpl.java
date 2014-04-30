@@ -3,6 +3,7 @@ package org.sikessle.gameoflife.model.impl;
 import java.util.Arrays;
 import java.util.Observer;
 
+import org.sikessle.gameoflife.model.Figure;
 import org.sikessle.gameoflife.model.GenerationStrategyPlugin;
 import org.sikessle.gameoflife.model.Grid;
 import org.sikessle.gameoflife.util.ArrayCopier;
@@ -19,11 +20,13 @@ public class GridImpl implements Grid {
 	private int columns;
 	private final GenerationStepper generationStepper;
 	private final ObservableImpl observable;
+	private final FigureSpawner figureSpawner;
 
 	@Inject
 	public GridImpl(GenerationStrategyPlugin generationStrategy) {
 		generationStepper = new GenerationStepper(generationStrategy);
 		observable = new ObservableImpl();
+		figureSpawner = new FigureSpawner();
 		rows = INIT_ROWS;
 		columns = INIT_COLUMNS;
 		createGrid();
@@ -135,6 +138,15 @@ public class GridImpl implements Grid {
 	public void setGenerationStrategy(
 			GenerationStrategyPlugin generationStrategy) {
 		this.generationStepper.setGenerationStrategy(generationStrategy);
+	}
+
+	@Override
+	public void spawnFigure(Figure figure, int row, int column) {
+		if (figure == null) {
+			return;
+		}
+		figureSpawner.setTarget(new CoordinateImpl(row, column));
+		figureSpawner.spawn(figure, this);
 	}
 
 }

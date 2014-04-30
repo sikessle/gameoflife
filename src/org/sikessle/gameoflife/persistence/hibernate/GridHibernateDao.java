@@ -1,6 +1,6 @@
 package org.sikessle.gameoflife.persistence.hibernate;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.PersistenceException;
@@ -102,7 +102,7 @@ public class GridHibernateDao implements GridDao {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<String> getAllGameNames() {
-		List<String> result = new LinkedList<String>();
+		List<String> result = new ArrayList<String>();
 		try {
 			setupTransactionAndSession();
 
@@ -123,7 +123,7 @@ public class GridHibernateDao implements GridDao {
 
 	@SuppressWarnings("unchecked")
 	private List<GridDto> findByName(final String gameName) {
-		List<GridDto> result = new LinkedList<GridDto>();
+		List<GridDto> result = new ArrayList<GridDto>();
 		try {
 			setupTransactionAndSession();
 

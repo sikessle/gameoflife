@@ -1,4 +1,4 @@
-package org.sikessle.gameoflife.figures;
+package org.sikessle.gameoflife.model;
 
 import java.util.List;
 

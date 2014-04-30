@@ -1,7 +1,7 @@
 package org.sikessle.gameoflife.view.tui;
 
-import org.sikessle.gameoflife.figures.Figure;
-import org.sikessle.gameoflife.figures.impl.Glider;
+import org.sikessle.gameoflife.model.Figure;
+import org.sikessle.gameoflife.model.impl.Glider;
 
 public class GliderCommand extends AbstractFigureCommand {
 

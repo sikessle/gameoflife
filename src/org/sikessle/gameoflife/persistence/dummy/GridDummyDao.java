@@ -1,6 +1,6 @@
 package org.sikessle.gameoflife.persistence.dummy;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.sikessle.gameoflife.model.Grid;
@@ -25,7 +25,7 @@ public class GridDummyDao implements GridDao {
 
 	@Override
 	public List<String> getAllGameNames() {
-		return new LinkedList<String>();
+		return new ArrayList<String>();
 	}
 
 }

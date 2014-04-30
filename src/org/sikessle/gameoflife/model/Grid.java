@@ -24,4 +24,6 @@ public interface Grid extends Observable {
 
 	void setGenerationStrategy(GenerationStrategyPlugin generationStrategy);
 
+	void spawnFigure(Figure figure, int row, int column);
+
 }

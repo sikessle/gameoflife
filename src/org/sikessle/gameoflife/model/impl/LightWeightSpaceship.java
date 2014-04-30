@@ -1,10 +1,10 @@
-package org.sikessle.gameoflife.figures.impl;
+package org.sikessle.gameoflife.model.impl;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
-import org.sikessle.gameoflife.figures.Coordinate;
-import org.sikessle.gameoflife.figures.Figure;
+import org.sikessle.gameoflife.model.Coordinate;
+import org.sikessle.gameoflife.model.Figure;
 
 public class LightWeightSpaceship implements Figure {
 
@@ -15,7 +15,7 @@ public class LightWeightSpaceship implements Figure {
 
 	@Override
 	public List<Coordinate> getCoordinates() {
-		List<Coordinate> coordinates = new LinkedList<Coordinate>();
+		List<Coordinate> coordinates = new ArrayList<Coordinate>();
 
 		coordinates.add(new CoordinateImpl(0, 1));
 		coordinates.add(new CoordinateImpl(1, 0));

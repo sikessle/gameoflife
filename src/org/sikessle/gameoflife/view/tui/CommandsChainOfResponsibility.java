@@ -1,5 +1,6 @@
 package org.sikessle.gameoflife.view.tui;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class CommandsChainOfResponsibility {
 			throw new IllegalArgumentException();
 		}
 		this.textUi = textUi;
-		commands = new LinkedList<Command>();
+		commands = new ArrayList<Command>();
 		addCommands();
 	}
 

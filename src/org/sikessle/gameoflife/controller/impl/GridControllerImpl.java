@@ -5,6 +5,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import org.sikessle.gameoflife.controller.GridController;
+import org.sikessle.gameoflife.model.Figure;
 import org.sikessle.gameoflife.model.Grid;
 import org.sikessle.gameoflife.persistence.GridDao;
 import org.sikessle.gameoflife.util.ObservableImpl;
@@ -115,6 +116,11 @@ public class GridControllerImpl implements GridController {
 	@Override
 	public String getGenerationStrategyName() {
 		return grid.getGenerationStrategyName();
+	}
+
+	@Override
+	public void spawnFigure(Figure figure, int row, int column) {
+		grid.spawnFigure(figure, row, column);
 	}
 
 }

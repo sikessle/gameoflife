@@ -4,12 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.List;
 
 import org.sikessle.gameoflife.controller.GridController;
-import org.sikessle.gameoflife.figures.Coordinate;
-import org.sikessle.gameoflife.figures.Figure;
-import org.sikessle.gameoflife.figures.impl.CoordinateTranslator;
+import org.sikessle.gameoflife.model.Figure;
 
 public class FigureActionListener extends MouseAdapter implements
 		ActionListener {
@@ -43,12 +40,7 @@ public class FigureActionListener extends MouseAdapter implements
 		// remove clicked cell
 		controller.setCellToDeadAtPosition(row, column);
 
-		List<Coordinate> translated = CoordinateTranslator.translatePositiveBy(
-				figure.getCoordinates(), row, column);
-
-		for (Coordinate coord : translated) {
-			controller.setCellToLivingAtPosition(coord.getX(), coord.getY());
-		}
+		controller.spawnFigure(figure, row, column);
 
 		gridPanel.removeMouseListener(this);
 	}

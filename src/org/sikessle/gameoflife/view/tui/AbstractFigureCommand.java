@@ -1,12 +1,9 @@
 package org.sikessle.gameoflife.view.tui;
 
 import java.util.Iterator;
-import java.util.List;
 
 import org.sikessle.gameoflife.controller.GridController;
-import org.sikessle.gameoflife.figures.Coordinate;
-import org.sikessle.gameoflife.figures.Figure;
-import org.sikessle.gameoflife.figures.impl.CoordinateTranslator;
+import org.sikessle.gameoflife.model.Figure;
 
 public abstract class AbstractFigureCommand extends Command {
 
@@ -53,13 +50,7 @@ public abstract class AbstractFigureCommand extends Command {
 
 	@Override
 	public void execute() {
-		List<Coordinate> source = getFigure().getCoordinates();
-		List<Coordinate> coordinates = CoordinateTranslator
-				.translatePositiveBy(source, spawnX, spawnY);
-
-		for (Coordinate coord : coordinates) {
-			controller.setCellToLivingAtPosition(coord.getX(), coord.getY());
-		}
+		controller.spawnFigure(getFigure(), spawnX, spawnY);
 	}
 
 	protected abstract Figure getFigure();

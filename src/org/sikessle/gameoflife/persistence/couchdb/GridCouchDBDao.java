@@ -1,7 +1,7 @@
 package org.sikessle.gameoflife.persistence.couchdb;
 
 import java.net.MalformedURLException;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.ektorp.CouchDbConnector;
@@ -103,7 +103,7 @@ public class GridCouchDBDao implements GridDao {
 
 	@Override
 	public List<String> getAllGameNames() {
-		List<String> result = new LinkedList<String>();
+		List<String> result = new ArrayList<String>();
 		ViewQuery query = new ViewQuery().allDocs();
 		ViewResult grids = db.queryView(query);
 
