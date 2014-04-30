@@ -16,6 +16,8 @@ import org.sikessle.gameoflife.model.Grid;
 import org.sikessle.gameoflife.persistence.GridDao;
 import org.sikessle.gameoflife.persistence.util.DtoAndDomainObjectConverter;
 import org.sikessle.gameoflife.persistence.util.GridDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -23,6 +25,8 @@ import com.google.inject.name.Named;
 
 public class GridCouchDBDao implements GridDao {
 
+	private static final Logger LOG = LoggerFactory
+			.getLogger(GridCouchDBDao.class);
 	private final DtoAndDomainObjectConverter converter;
 	private CouchDbConnector db = null;
 
@@ -39,7 +43,7 @@ public class GridCouchDBDao implements GridDao {
 			client = new StdHttpClient.Builder().url(serverUrl).build();
 
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
+			LOG.error(e.getMessage());
 		}
 		CouchDbInstance dbInstance = new StdCouchDbInstance(client);
 		db = dbInstance.createConnector("gameoflife", true);

@@ -13,12 +13,16 @@ import org.sikessle.gameoflife.model.Grid;
 import org.sikessle.gameoflife.persistence.GridDao;
 import org.sikessle.gameoflife.persistence.util.DtoAndDomainObjectConverter;
 import org.sikessle.gameoflife.persistence.util.GridDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 
 public class GridHibernateDao implements GridDao {
 
+	private static final Logger LOG = LoggerFactory
+			.getLogger(GridHibernateDao.class);
 	private final DtoAndDomainObjectConverter converter;
 	private Transaction currentTransaction;
 	private Session currentSession;
@@ -141,6 +145,7 @@ public class GridHibernateDao implements GridDao {
 			try {
 				currentTransaction.rollback();
 			} catch (HibernateException rollbackException) {
+				LOG.error(rollbackException.getMessage());
 				throw new PersistenceException(transactionException);
 			}
 		}

@@ -3,6 +3,8 @@ package org.sikessle.gameoflife.view.tui;
 import java.util.Iterator;
 
 import org.sikessle.gameoflife.controller.GridController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class StepNGenerationsCommand extends Command {
 
@@ -11,6 +13,8 @@ public class StepNGenerationsCommand extends Command {
 	private static final int DELAY_BETWEEN_FRAMES_MS = 100;
 	private static final String KEY = "n";
 	private static final String DESCRIPTION = KEY + " [x]: step x generations";
+	private static final Logger LOG = LoggerFactory
+			.getLogger(StepNGenerationsCommand.class);
 
 	public StepNGenerationsCommand(TextView ui) {
 		if (ui == null) {
@@ -59,7 +63,7 @@ public class StepNGenerationsCommand extends Command {
 		try {
 			Thread.sleep(DELAY_BETWEEN_FRAMES_MS);
 		} catch (InterruptedException e) {
-			e.printStackTrace();
+			LOG.error(e.getMessage());
 		}
 	}
 

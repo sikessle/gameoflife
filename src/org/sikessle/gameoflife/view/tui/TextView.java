@@ -1,6 +1,5 @@
 package org.sikessle.gameoflife.view.tui;
 
-import java.io.PrintStream;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Observable;
@@ -9,12 +8,14 @@ import java.util.Queue;
 import java.util.Scanner;
 
 import org.sikessle.gameoflife.controller.GridController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TextView implements Observer {
 
 	private final GridController controller;
-	private Scanner scanner;
-	private PrintStream output;
+	private final Scanner scanner;
+	private static final Logger LOG = LoggerFactory.getLogger(TextView.class);
 	private boolean runGame = true;
 	private final Queue<String> additionalHeaderOutput;
 	private final CommandsChainOfResponsibility commandsChain;
@@ -26,14 +27,9 @@ public class TextView implements Observer {
 		this.controller = controller;
 		additionalHeaderOutput = new LinkedList<String>();
 		commandsChain = new CommandsChainOfResponsibility(this);
-		setDefaultInputOutput();
+		scanner = new Scanner(System.in);
 		controller.addObserver(this);
 		redraw();
-	}
-
-	private void setDefaultInputOutput() {
-		output = System.out;
-		scanner = new Scanner(System.in);
 	}
 
 	@Override
@@ -124,7 +120,7 @@ public class TextView implements Observer {
 	}
 
 	private void writeOut(String text) {
-		output.print(text);
+		LOG.info(text);
 	}
 
 	public void readAndInterpretInLoopFromInputStream() {

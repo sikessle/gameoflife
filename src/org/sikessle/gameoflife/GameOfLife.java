@@ -1,5 +1,6 @@
 package org.sikessle.gameoflife;
 
+import org.apache.log4j.PropertyConfigurator;
 import org.sikessle.gameoflife.controller.GridController;
 import org.sikessle.gameoflife.persistence.dummy.DummyModule;
 import org.sikessle.gameoflife.view.gui.SwingView;
@@ -14,6 +15,7 @@ public final class GameOfLife {
 	}
 
 	public static void main(String[] args) {
+		PropertyConfigurator.configure("log4j.properties");
 
 		Injector injector = Guice.createInjector(new BaseModule(),
 				new DummyModule());
@@ -22,4 +24,5 @@ public final class GameOfLife {
 		TextView textUI = new TextView(controller);
 		textUI.readAndInterpretInLoopFromInputStream();
 	}
+
 }
