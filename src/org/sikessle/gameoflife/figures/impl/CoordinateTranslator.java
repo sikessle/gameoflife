@@ -3,6 +3,8 @@ package org.sikessle.gameoflife.figures.impl;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.sikessle.gameoflife.figures.Coordinate;
+
 public final class CoordinateTranslator {
 
 	private CoordinateTranslator() {
@@ -27,7 +29,7 @@ public final class CoordinateTranslator {
 		for (Coordinate coord : source) {
 			int x = coord.getX() + xOffset;
 			int y = coord.getY() + yOffset;
-			translated.add(new Coordinate(x, y));
+			translated.add(new CoordinateImpl(x, y));
 		}
 
 		return translated;

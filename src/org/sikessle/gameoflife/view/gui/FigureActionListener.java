@@ -7,8 +7,8 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 
 import org.sikessle.gameoflife.controller.GridController;
+import org.sikessle.gameoflife.figures.Coordinate;
 import org.sikessle.gameoflife.figures.Figure;
-import org.sikessle.gameoflife.figures.impl.Coordinate;
 import org.sikessle.gameoflife.figures.impl.CoordinateTranslator;
 
 public class FigureActionListener extends MouseAdapter implements

@@ -4,15 +4,15 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.sikessle.gameoflife.controller.GridController;
+import org.sikessle.gameoflife.figures.Coordinate;
 import org.sikessle.gameoflife.figures.Figure;
-import org.sikessle.gameoflife.figures.impl.Coordinate;
 import org.sikessle.gameoflife.figures.impl.CoordinateTranslator;
 
 public abstract class AbstractFigureCommand extends Command {
 
 	private final GridController controller;
-	int spawnX = -1;
-	int spawnY = -1;
+	private int spawnX = -1;
+	private int spawnY = -1;
 
 	public AbstractFigureCommand(TextView textUi) {
 		if (textUi == null) {
