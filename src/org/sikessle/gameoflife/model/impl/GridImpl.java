@@ -5,6 +5,7 @@ import java.util.Observer;
 
 import org.sikessle.gameoflife.model.GenerationStrategyPlugin;
 import org.sikessle.gameoflife.model.Grid;
+import org.sikessle.gameoflife.util.CellCopyer;
 import org.sikessle.gameoflife.util.ObservableImpl;
 
 import com.google.inject.Inject;
@@ -55,7 +56,7 @@ public class GridImpl implements Grid {
 
 	@Override
 	public boolean[][] getCells() {
-		return cells;
+		return CellCopyer.copyCells(cells);
 	}
 
 	@Override
@@ -68,7 +69,7 @@ public class GridImpl implements Grid {
 		}
 		this.rows = cells.length;
 		this.columns = cells[0].length;
-		this.cells = cells;
+		this.cells = CellCopyer.copyCells(cells);
 		setChangedAndNotify();
 	}
 

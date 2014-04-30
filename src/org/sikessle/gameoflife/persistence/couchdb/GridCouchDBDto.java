@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.sikessle.gameoflife.persistence.util.GridDto;
+import org.sikessle.gameoflife.util.CellCopyer;
 
 public class GridCouchDBDto implements GridDto, Serializable {
 
@@ -37,12 +38,12 @@ public class GridCouchDBDto implements GridDto, Serializable {
 
 	@Override
 	public boolean[][] getCells() {
-		return cells;
+		return CellCopyer.copyCells(cells);
 	}
 
 	@Override
 	public void setCells(boolean[][] cells) {
-		this.cells = cells;
+		this.cells = CellCopyer.copyCells(cells);
 	}
 
 }

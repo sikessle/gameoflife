@@ -1,7 +1,5 @@
 package org.sikessle.gameoflife.persistence.util;
 
-import static org.sikessle.gameoflife.persistence.util.CellCopyer.copyCells;
-
 import org.sikessle.gameoflife.model.Grid;
 
 import com.google.inject.Injector;
@@ -16,7 +14,7 @@ public class DtoAndDomainObjectConverter {
 
 	public Grid convertDtoToDomain(GridDto gridDto) {
 		Grid grid = injector.getInstance(Grid.class);
-		boolean[][] cells = copyCells(gridDto.getCells());
+		boolean[][] cells = gridDto.getCells();
 		grid.setCells(cells);
 
 		return grid;
@@ -24,7 +22,7 @@ public class DtoAndDomainObjectConverter {
 
 	public GridDto convertDomainToDto(Grid grid, String gameName) {
 		GridDto gridDto = injector.getInstance(GridDto.class);
-		boolean[][] cells = copyCells(grid.getCells());
+		boolean[][] cells = grid.getCells();
 		gridDto.setGameName(gameName);
 		gridDto.setCells(cells);
 

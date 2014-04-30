@@ -1,4 +1,4 @@
-package org.sikessle.gameoflife.persistence.util;
+package org.sikessle.gameoflife.util;
 
 public final class CellCopyer {
 
