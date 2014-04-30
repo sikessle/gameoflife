@@ -34,6 +34,6 @@ public interface GridController extends Observer, Observable {
 
 	String getGenerationStrategyName();
 
-	void spawnFigure(Figure figure, int row, int colum);
+	void spawnFigure(Figure figure, int row, int column);
 
 }
