@@ -29,9 +29,9 @@ public abstract class Command {
 		}
 	}
 
-	protected abstract void execute();
-
 	protected abstract boolean isResponsible();
+
+	protected abstract void execute();
 
 	@Override
 	public abstract String toString();

@@ -1,7 +1,6 @@
 package org.sikessle.gameoflife;
 
 import org.sikessle.gameoflife.controller.GridController;
-import org.sikessle.gameoflife.persistence.couchdb.CouchDBModule;
 import org.sikessle.gameoflife.persistence.dummy.DummyModule;
 import org.sikessle.gameoflife.view.gui.SwingView;
 import org.sikessle.gameoflife.view.tui.TextView;
@@ -13,7 +12,7 @@ public class GameOfLife {
 
 	public static void main(String[] args) {
 
-		Injector injector = Guice.createInjector(new CouchDBModule(),
+		Injector injector = Guice.createInjector(new BaseModule(),
 				new DummyModule());
 		GridController controller = injector.getInstance(GridController.class);
 		new SwingView(controller);

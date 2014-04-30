@@ -18,6 +18,8 @@ import com.google.inject.Injector;
 public class GridHibernateDao implements GridDao {
 
 	private final DtoAndDomainObjectConverter converter;
+	private Transaction currentTransaction;
+	private Session currentSession;
 
 	@Inject
 	public GridHibernateDao(Injector injector) {
@@ -44,23 +46,15 @@ public class GridHibernateDao implements GridDao {
 		}
 		GridDto gridDto = converter.convertDomainToDto(grid, gameName);
 
-		Transaction tx = null;
 		try {
-			Session session = HibernateUtil.getInstance().getCurrentSession();
-			tx = session.beginTransaction();
+			setupTransactionAndSession();
 
-			session.saveOrUpdate(gridDto);
+			currentSession.saveOrUpdate(gridDto);
 
-			tx.commit();
+			currentTransaction.commit();
 			return true;
 		} catch (HibernateException ex) {
-			if (tx != null) {
-				try {
-					tx.rollback();
-				} catch (HibernateException exRb) {
-					throw new RuntimeException(ex.getMessage());
-				}
-			}
+			rollbackCurrentTransaction(ex);
 		}
 
 		return false;
@@ -76,55 +70,43 @@ public class GridHibernateDao implements GridDao {
 			return false;
 		}
 
-		Transaction tx = null;
 		try {
-			Session session = HibernateUtil.getInstance().getCurrentSession();
-			tx = session.beginTransaction();
-
-			for (GridDto grid : found) {
-				session.delete(grid);
-			}
-
-			tx.commit();
+			deleteGridsUnchecked(found);
 			return true;
 		} catch (HibernateException ex) {
-			if (tx != null) {
-				try {
-					tx.rollback();
-				} catch (HibernateException exRb) {
-					throw new RuntimeException(ex.getMessage());
-				}
-			}
+			rollbackCurrentTransaction(ex);
 		}
 
 		return false;
+	}
+
+	private void deleteGridsUnchecked(List<GridDto> found) {
+		setupTransactionAndSession();
+
+		for (GridDto grid : found) {
+			currentSession.delete(grid);
+		}
+
+		currentTransaction.commit();
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<String> getAllGameNames() {
 		List<String> result = new LinkedList<String>();
-		Transaction tx = null;
 		try {
-			Session session = HibernateUtil.getInstance().getCurrentSession();
-			tx = session.beginTransaction();
+			setupTransactionAndSession();
 
-			List<GridDto> grids = session
-					.createCriteria(GridHibernateDto.class).list();
+			List<GridDto> grids = currentSession.createCriteria(
+					GridHibernateDto.class).list();
 
 			for (GridDto grid : grids) {
 				result.add(grid.getGameName());
 			}
 
-			tx.commit();
+			currentTransaction.commit();
 		} catch (HibernateException ex) {
-			if (tx != null) {
-				try {
-					tx.rollback();
-				} catch (HibernateException exRb) {
-					throw new RuntimeException(ex.getMessage());
-				}
-			}
+			rollbackCurrentTransaction(ex);
 		}
 
 		return result;
@@ -133,24 +115,32 @@ public class GridHibernateDao implements GridDao {
 	@SuppressWarnings("unchecked")
 	private List<GridDto> findByName(final String gameName) {
 		List<GridDto> result = new LinkedList<GridDto>();
-		Transaction tx = null;
 		try {
-			Session session = HibernateUtil.getInstance().getCurrentSession();
-			tx = session.beginTransaction();
+			setupTransactionAndSession();
 
-			result = session.createCriteria(GridHibernateDto.class)
+			result = currentSession.createCriteria(GridHibernateDto.class)
 					.add(Restrictions.idEq(gameName)).list();
 
-			tx.commit();
+			currentTransaction.commit();
 		} catch (HibernateException ex) {
-			if (tx != null) {
-				try {
-					tx.rollback();
-				} catch (HibernateException exRb) {
-					throw new RuntimeException(ex.getMessage());
-				}
-			}
+			rollbackCurrentTransaction(ex);
 		}
 		return result;
+	}
+
+	private void setupTransactionAndSession() throws HibernateException {
+		currentSession = HibernateUtil.getInstance().getCurrentSession();
+		currentTransaction = currentSession.beginTransaction();
+	}
+
+	private void rollbackCurrentTransaction(
+			HibernateException transactionException) {
+		if (currentTransaction != null) {
+			try {
+				currentTransaction.rollback();
+			} catch (HibernateException exRb) {
+				throw new RuntimeException(transactionException.getMessage());
+			}
+		}
 	}
 }

@@ -1,6 +1,5 @@
 package org.sikessle.gameoflife.view.tui;
 
-import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,10 +15,9 @@ public class TextView implements Observer {
 	private final GridController controller;
 	private Scanner scanner;
 	private PrintStream output;
-	private Command firstCommand;
-	private Command lastCommand;
 	private boolean runGame = true;
 	private final Queue<String> additionalHeaderOutput;
+	private final CommandsChainOfResponsibility commandsChain;
 
 	public TextView(GridController controller) {
 		if (controller == null) {
@@ -27,48 +25,15 @@ public class TextView implements Observer {
 		}
 		this.controller = controller;
 		additionalHeaderOutput = new LinkedList<String>();
-		addCommands();
+		commandsChain = new CommandsChainOfResponsibility(this);
 		setDefaultInputOutput();
 		controller.addObserver(this);
 		redraw();
 	}
 
 	private void setDefaultInputOutput() {
-		setOutput(System.out);
-		setInput(System.in);
-	}
-
-	private void addCommands() {
-		firstCommand = lastCommand = new NullCommand();
-		addCommand(new QuitCommand(this));
-		addCommand(new ClearGridCommand(this));
-		addCommand(new ListSavedGamesCommand(this));
-		addCommand(new LoadGameCommand(this));
-		addCommand(new SaveGameCommand(this));
-		addCommand(new SetGridSizeCommand(this));
-		addCommand(new StepOneGenerationCommand(this));
-		addCommand(new StepNGenerationsCommand(this));
-		addCommand(new ToggleCellCommand(this));
-		addCommand(new GliderCommand(this));
-	}
-
-	private void addCommand(Command command) {
-		lastCommand.setSuccessorCommand(command);
-		lastCommand = command;
-	}
-
-	public void setInput(InputStream input) {
-		if (input == null) {
-			throw new NullPointerException();
-		}
-		scanner = new Scanner(input);
-	}
-
-	public void setOutput(PrintStream output) {
-		if (output == null) {
-			throw new NullPointerException();
-		}
-		this.output = output;
+		output = System.out;
+		scanner = new Scanner(System.in);
 	}
 
 	@Override
@@ -149,25 +114,13 @@ public class TextView implements Observer {
 	}
 
 	private void drawAvailableCommands() {
-		List<String> commandFormats = getAllCommandFormats();
+		List<String> commandFormats = commandsChain.getAllCommandDescriptions();
 		writeOut("Commands: ");
 		drawLineBreak();
 		for (String command : commandFormats) {
 			writeOut(command);
 			drawLineBreak();
 		}
-	}
-
-	private List<String> getAllCommandFormats() {
-		Command command = firstCommand;
-		List<String> commandFormats = new LinkedList<String>();
-
-		while (command != null) {
-			commandFormats.add(command.toString());
-			command = command.getSuccessor();
-		}
-
-		return commandFormats;
 	}
 
 	private void writeOut(String text) {
@@ -205,7 +158,7 @@ public class TextView implements Observer {
 	private void interpretLine(String line) {
 		String command = getCommand(line);
 		Args arguments = getArguments(line);
-		firstCommand.handle(command, arguments);
+		commandsChain.handle(command, arguments);
 	}
 
 	private String getCommand(String line) {

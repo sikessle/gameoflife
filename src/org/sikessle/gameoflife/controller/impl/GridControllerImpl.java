@@ -11,7 +11,6 @@ import org.sikessle.gameoflife.util.ObservableImpl;
 
 import com.google.inject.Inject;
 
-// TODO TESTING
 public class GridControllerImpl implements GridController {
 
 	protected final ObservableImpl observable;

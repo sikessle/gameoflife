@@ -66,24 +66,39 @@ public class GenerationStepper {
 		int livingNeighbors = 0;
 
 		for (int i = currentRow - 1; i <= currentRow + 1; i++) {
-			if (i < 0 || i >= currentGeneration.length) {
+			if (isRowIndexOutOfBounds(i)) {
 				continue;
 			}
-			for (int j = currentColumn - 1; j <= currentColumn + 1; j++) {
-				if (j < 0 || j >= currentGeneration[i].length) {
-					continue;
-				}
-
-				if (isNotCurrentCell(i, j) && isCellAlive(i, j)) {
-					livingNeighbors++;
-				}
-			}
+			livingNeighbors += countLivingNeighborsInRow(i);
 		}
 		return livingNeighbors;
 	}
 
-	private boolean isNotCurrentCell(int i, int j) {
-		return (i != currentRow) || (j != currentColumn);
+	private int countLivingNeighborsInRow(int i) {
+		int livingNeighborsInRow = 0;
+
+		for (int j = currentColumn - 1; j <= currentColumn + 1; j++) {
+			if (isColumnIndexOutOfBounds(i, j)) {
+				continue;
+			}
+
+			if (isNotCurrentCell(i, j) && isCellAlive(i, j)) {
+				livingNeighborsInRow++;
+			}
+		}
+		return livingNeighborsInRow;
+	}
+
+	private boolean isColumnIndexOutOfBounds(int row, int column) {
+		return column < 0 || column >= currentGeneration[row].length;
+	}
+
+	private boolean isRowIndexOutOfBounds(int row) {
+		return row < 0 || row >= currentGeneration.length;
+	}
+
+	private boolean isNotCurrentCell(int row, int column) {
+		return (row != currentRow) || (column != currentColumn);
 	}
 
 	private boolean isCellAlive(int row, int column) {
