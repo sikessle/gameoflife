@@ -5,7 +5,9 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 import org.sikessle.gameoflife.BaseModule;
+import org.sikessle.gameoflife.model.AlwaysDeadGenerationStrategyPlugin;
 import org.sikessle.gameoflife.model.Grid;
+import org.sikessle.gameoflife.model.impl.GridImpl;
 import org.sikessle.gameoflife.persistence.db4o.Db4oModule;
 import org.sikessle.gameoflife.persistence.db4o.GridDb4oDto;
 
@@ -34,6 +36,21 @@ public class DtoAndDomainObjectConverterTest {
 		for (int i = 0; i < cells.length; i++) {
 			for (int j = 0; j < cells[i].length; j++) {
 				assertEquals(cells[i][j], domainCells[i][j]);
+			}
+		}
+	}
+
+	@Test
+	public void convertDomainToDto() {
+		boolean[][] cells = { { true, true }, { false, true }, { false, false } };
+		Grid grid = new GridImpl(new AlwaysDeadGenerationStrategyPlugin());
+		grid.setCells(cells);
+		GridDto gridDto = converter.convertDomainToDto(grid, "test game");
+		boolean[][] dtoCells = gridDto.getCells();
+
+		for (int i = 0; i < cells.length; i++) {
+			for (int j = 0; j < cells[i].length; j++) {
+				assertEquals(cells[i][j], dtoCells[i][j]);
 			}
 		}
 	}

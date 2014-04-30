@@ -12,10 +12,12 @@ public class GridImplTest {
 
 	private Grid grid;
 	private ObserverDummy observer;
+	private GenerationStrategyPlugin strategy;
 
 	@Before
 	public void setUp() throws Exception {
-		grid = new GridImpl(new AlwaysDeadGenerationStrategyPlugin());
+		strategy = new AlwaysDeadGenerationStrategyPlugin();
+		grid = new GridImpl(strategy);
 		observer = new ObserverDummy();
 	}
 
@@ -25,8 +27,23 @@ public class GridImplTest {
 	}
 
 	@Test(expected = NullPointerException.class)
+	public void testSetCellsNull() {
+		grid.setCells(null);
+	}
+
+	@Test(expected = IndexOutOfBoundsException.class)
+	public void testSetCellsOutOfBounds() {
+		grid.setCells(new boolean[0][1]);
+	}
+
+	@Test(expected = NullPointerException.class)
 	public void testSetGenerationStrategyException() {
 		grid.setGenerationStrategy(null);
+	}
+
+	@Test
+	public void testGetGenerationStrategyName() {
+		assertEquals(strategy.getName(), grid.getGenerationStrategyName());
 	}
 
 	@Test

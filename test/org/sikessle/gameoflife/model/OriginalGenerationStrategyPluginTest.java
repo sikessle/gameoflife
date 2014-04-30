@@ -1,7 +1,6 @@
 package org.sikessle.gameoflife.model;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +13,11 @@ public class OriginalGenerationStrategyPluginTest {
 	@Before
 	public void setUp() throws Exception {
 		strategy = new OriginalGenerationStrategy();
+	}
+
+	@Test
+	public void testgetName() {
+		assertEquals("23/3-World", strategy.getName());
 	}
 
 	@Test

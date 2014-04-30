@@ -1,6 +1,6 @@
 package org.sikessle.gameoflife.model;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.sikessle.gameoflife.model.impl.GenerationStepper;
@@ -51,6 +51,15 @@ public class GenerationStepperTest {
 				assertTrue(cells[i][j] == value);
 			}
 		}
+	}
+
+	@Test
+	public void testGetGenerationStrategy() {
+		GenerationStrategyPlugin expected = new AlwaysDeadGenerationStrategyPlugin();
+		setGenerationStepper(expected);
+		GenerationStrategyPlugin actual = stepper.getGenerationStrategy();
+
+		assertSame(expected, actual);
 	}
 
 }
