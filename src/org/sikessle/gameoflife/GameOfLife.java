@@ -8,7 +8,7 @@ import org.sikessle.gameoflife.view.tui.TextView;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 
-public class GameOfLife {
+public final class GameOfLife {
 
 	private GameOfLife() {
 	}

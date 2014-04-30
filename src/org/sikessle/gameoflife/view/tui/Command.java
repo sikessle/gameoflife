@@ -3,8 +3,16 @@ package org.sikessle.gameoflife.view.tui;
 public abstract class Command {
 
 	private Command successor;
-	protected String command;
-	protected Args arguments;
+	private String command;
+	private Args arguments;
+
+	public String getCommand() {
+		return command;
+	}
+
+	public Args getArguments() {
+		return arguments;
+	}
 
 	public void setSuccessorCommand(Command successor) {
 		this.successor = successor;

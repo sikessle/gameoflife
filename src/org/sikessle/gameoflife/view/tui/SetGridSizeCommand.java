@@ -22,7 +22,7 @@ public class SetGridSizeCommand extends Command {
 	@Override
 	protected boolean isResponsible() {
 		parseArguments();
-		return command.equals(KEY) && argsAreValid();
+		return getCommand().equals(KEY) && argsAreValid();
 	}
 
 	@Override
@@ -31,11 +31,11 @@ public class SetGridSizeCommand extends Command {
 	}
 
 	private void parseArguments() {
-		if (arguments.size() < 2) {
+		if (getArguments().size() < 2) {
 			return;
 		}
 
-		Iterator<String> iterator = arguments.iterator();
+		Iterator<String> iterator = getArguments().iterator();
 
 		try {
 			rows = Integer.parseInt(iterator.next());

@@ -22,7 +22,7 @@ public class ToggleCellCommand extends Command {
 	@Override
 	protected boolean isResponsible() {
 		parseArguments();
-		return command.equals(KEY) && argsAreValid();
+		return getCommand().equals(KEY) && argsAreValid();
 	}
 
 	@Override
@@ -39,11 +39,11 @@ public class ToggleCellCommand extends Command {
 	}
 
 	private void parseArguments() {
-		if (arguments.size() < 2) {
+		if (getArguments().size() < 2) {
 			return;
 		}
 
-		Iterator<String> iterator = arguments.iterator();
+		Iterator<String> iterator = getArguments().iterator();
 
 		try {
 			row = Integer.parseInt(iterator.next());

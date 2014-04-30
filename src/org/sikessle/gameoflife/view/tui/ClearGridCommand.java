@@ -15,7 +15,7 @@ public class ClearGridCommand extends Command {
 
 	@Override
 	protected boolean isResponsible() {
-		return command.equals(KEY) && arguments.size() == 0;
+		return getCommand().equals(KEY) && getArguments().size() == 0;
 	}
 
 	@Override

@@ -13,10 +13,10 @@ import com.google.inject.Inject;
 
 public class GridControllerImpl implements GridController {
 
-	protected final ObservableImpl observable;
-	protected Grid grid;
+	private final ObservableImpl observable;
+	private Grid grid;
 	@Inject
-	protected GridDao gridDao;
+	private GridDao gridDao;
 
 	@Inject
 	public GridControllerImpl(Grid grid) {

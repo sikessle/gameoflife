@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
 
 public class Args implements Iterable<String> {
 
-	String[] args;
+	private String[] args;
 
 	public Args(String inputToParse) {
 		if (inputToParse == null) {

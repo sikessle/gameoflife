@@ -24,7 +24,7 @@ public class SaveGameCommand extends Command {
 	@Override
 	protected boolean isResponsible() {
 		parseArguments();
-		return command.equals(KEY) && argsAreValid();
+		return getCommand().equals(KEY) && argsAreValid();
 	}
 
 	@Override
@@ -40,11 +40,11 @@ public class SaveGameCommand extends Command {
 	}
 
 	private void parseArguments() {
-		if (arguments.size() < 1) {
+		if (getArguments().size() < 1) {
 			return;
 		}
 
-		Iterator<String> iterator = arguments.iterator();
+		Iterator<String> iterator = getArguments().iterator();
 		gameName = iterator.next();
 	}
 
