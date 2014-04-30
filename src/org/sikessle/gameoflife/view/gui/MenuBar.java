@@ -1,5 +1,7 @@
 package org.sikessle.gameoflife.view.gui;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -8,6 +10,10 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import org.sikessle.gameoflife.controller.GridController;
+import org.sikessle.gameoflife.figures.Figure;
+import org.sikessle.gameoflife.figures.impl.Glider;
+import org.sikessle.gameoflife.figures.impl.LightWeightSpaceship;
+import org.sikessle.gameoflife.figures.impl.RPentomino;
 
 public class MenuBar extends JMenuBar implements Observer {
 
@@ -16,15 +22,18 @@ public class MenuBar extends JMenuBar implements Observer {
 	private static final String TITLE_PERSISTENCE = "Load/Save";
 	private static final String TITLE_LOAD = "Load";
 	private static final String TITLE_SAVE = "Save";
+	private static final String TITLE_FIGURES = "Figures";
 
 	private final GridController controller;
+	private final GridDrawingPanel gridPanel;
 
-	public MenuBar(GridController controller) {
-		if (controller == null) {
+	public MenuBar(GridController controller, GridDrawingPanel gridPanel) {
+		if (controller == null || gridPanel == null) {
 			throw new IllegalArgumentException();
 		}
 
 		this.controller = controller;
+		this.gridPanel = gridPanel;
 		buildMenuBar();
 		controller.addObserver(this);
 		updateStatus();
@@ -32,7 +41,7 @@ public class MenuBar extends JMenuBar implements Observer {
 
 	private void buildMenuBar() {
 		buildPersistenceMenu();
-		buildGliderMenu();
+		buildFiguresMenu();
 	}
 
 	private void buildPersistenceMenu() {
@@ -48,9 +57,26 @@ public class MenuBar extends JMenuBar implements Observer {
 		add(persistenceMenu);
 	}
 
-	private void buildGliderMenu() {
-		// TODO Auto-generated method stub
+	private void buildFiguresMenu() {
+		JMenu figuresMenu = new JMenu(TITLE_FIGURES);
 
+		for (Figure figure : getFigures()) {
+			JMenuItem figureItem = new JMenuItem(figure.getName());
+			figureItem.addActionListener(new FigureActionListener(figure,
+					controller, gridPanel));
+			figuresMenu.add(figureItem);
+		}
+		add(figuresMenu);
+	}
+
+	private List<Figure> getFigures() {
+		List<Figure> figures = new LinkedList<Figure>();
+
+		figures.add(new Glider());
+		figures.add(new LightWeightSpaceship());
+		figures.add(new RPentomino());
+
+		return figures;
 	}
 
 	@Override

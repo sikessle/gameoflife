@@ -96,4 +96,8 @@ public class GridDrawingPanel extends JPanel implements Observer {
 		graphics.fillRect(startX, startY, size, size);
 	}
 
+	public int getCellSize() {
+		return CELL_SIZE;
+	}
+
 }
