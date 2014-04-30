@@ -67,9 +67,9 @@ public class GridImpl implements Grid {
 		if (cells.length == 0) {
 			throw new IndexOutOfBoundsException();
 		}
-		this.rows = cells.length;
-		this.columns = cells[0].length;
 		this.cells = CellCopyer.copyCells(cells);
+		this.rows = this.cells.length;
+		this.columns = this.cells[0].length;
 		setChangedAndNotify();
 	}
 
