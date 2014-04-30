@@ -14,9 +14,6 @@ public class SwingView extends JFrame {
 
 	private final GridController controller;
 
-	private ControlPanel controlPanel;
-	private StatusPanel statusPanel;
-
 	public SwingView(GridController controller) {
 		if (controller == null) {
 			throw new NullPointerException();
@@ -38,8 +35,8 @@ public class SwingView extends JFrame {
 
 	private void addGUIComponents() {
 		GridDrawingPanel gridPanel = new GridDrawingPanel(controller);
-		controlPanel = new ControlPanel(controller);
-		statusPanel = new StatusPanel(controller);
+		ControlPanel controlPanel = new ControlPanel(controller);
+		StatusPanel statusPanel = new StatusPanel(controller);
 		add(controlPanel, BorderLayout.NORTH);
 		add(gridPanel, BorderLayout.CENTER);
 		add(statusPanel, BorderLayout.SOUTH);
