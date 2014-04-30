@@ -145,8 +145,8 @@ public class GridHibernateDao implements GridDao {
 			try {
 				currentTransaction.rollback();
 			} catch (HibernateException rollbackException) {
-				LOG.error(rollbackException.getMessage());
-				throw new PersistenceException(transactionException);
+				LOG.error(transactionException.getMessage());
+				throw new PersistenceException(rollbackException);
 			}
 		}
 	}
