@@ -45,10 +45,14 @@ public class GridDb4oDao implements GridDao {
 			throw new IllegalArgumentException();
 		}
 		GridDto gridDto = converter.convertDomainToDto(grid, gameName);
+		updateOrCreate(gameName, gridDto);
+		return true;
+	}
+
+	private void updateOrCreate(String gameName, GridDto gridDto) {
 		// make sure only one object with the game name exists in the database
 		delete(gameName);
 		db.store(gridDto);
-		return true;
 	}
 
 	@Override
@@ -76,19 +80,30 @@ public class GridDb4oDao implements GridDao {
 		return result;
 	}
 
-	@SuppressWarnings("serial")
 	private GridDto findByName(final String gameName) {
-		ObjectSet<GridDb4oDto> grids = db.query(new Predicate<GridDb4oDto>() {
-			@Override
-			public boolean match(GridDb4oDto grid) {
-				return grid.getGameName().equals(gameName);
-			}
-		});
+		ObjectSet<GridDb4oDto> grids = db.query(new GameNameMatchingPredicate(
+				gameName));
 
 		if (grids.isEmpty()) {
 			return null;
 		}
 		return grids.get(0);
+	}
+
+	@SuppressWarnings("serial")
+	private static class GameNameMatchingPredicate extends
+			Predicate<GridDb4oDto> {
+
+		private final String gameName;
+
+		public GameNameMatchingPredicate(String gameName) {
+			this.gameName = gameName;
+		}
+
+		@Override
+		public boolean match(GridDb4oDto grid) {
+			return grid.getGameName().equals(gameName);
+		}
 	}
 
 }

@@ -68,14 +68,17 @@ public class GridCouchDBDao implements GridDao {
 			throw new IllegalArgumentException();
 		}
 		GridDto gridDto = converter.convertDomainToDto(grid, gameName);
+		updateOrCreate(gameName, gridDto);
 
+		return true;
+	}
+
+	private void updateOrCreate(String gameName, GridDto gridDto) {
 		if (db.contains(gameName)) {
 			db.update(gridDto);
 		} else {
 			db.create(gridDto);
 		}
-
-		return true;
 	}
 
 	@Override
