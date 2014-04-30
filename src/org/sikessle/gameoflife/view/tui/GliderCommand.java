@@ -10,7 +10,7 @@ public class GliderCommand extends Command {
 
 	public GliderCommand(TextView ui) {
 		if (ui == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 		this.controller = ui.getGridController();
 	}

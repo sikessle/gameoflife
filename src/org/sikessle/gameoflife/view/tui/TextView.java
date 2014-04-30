@@ -21,7 +21,7 @@ public class TextView implements Observer {
 
 	public TextView(GridController controller) {
 		if (controller == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 		this.controller = controller;
 		additionalHeaderOutput = new LinkedList<String>();

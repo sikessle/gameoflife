@@ -10,7 +10,7 @@ public class CommandsChainOfResponsibility {
 
 	public CommandsChainOfResponsibility(TextView textUi) {
 		if (textUi == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 		this.textUi = textUi;
 		commands = new LinkedList<Command>();

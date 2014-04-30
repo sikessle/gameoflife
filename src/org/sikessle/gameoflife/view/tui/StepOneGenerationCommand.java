@@ -10,7 +10,7 @@ public class StepOneGenerationCommand extends Command {
 
 	public StepOneGenerationCommand(TextView ui) {
 		if (ui == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 		this.controller = ui.getGridController();
 	}

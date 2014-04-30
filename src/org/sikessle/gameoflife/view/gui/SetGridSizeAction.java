@@ -16,7 +16,7 @@ public class SetGridSizeAction implements ActionListener {
 	public SetGridSizeAction(GridController controller, JTextField rowsField,
 			JTextField columnsField) {
 		if (controller == null || rowsField == null || columnsField == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 
 		this.controller = controller;

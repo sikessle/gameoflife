@@ -21,12 +21,12 @@ public class GridImplTest {
 		observer = new ObserverDummy();
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testGridImpl() {
 		new GridImpl(null);
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testSetCellsNull() {
 		grid.setCells(null);
 	}
@@ -36,7 +36,7 @@ public class GridImplTest {
 		grid.setCells(new boolean[0][1]);
 	}
 
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testSetGenerationStrategyException() {
 		grid.setGenerationStrategy(null);
 	}

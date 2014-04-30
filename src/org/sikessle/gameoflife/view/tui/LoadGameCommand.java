@@ -15,7 +15,7 @@ public class LoadGameCommand extends Command {
 
 	public LoadGameCommand(TextView ui) {
 		if (ui == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 		this.ui = ui;
 		this.controller = ui.getGridController();

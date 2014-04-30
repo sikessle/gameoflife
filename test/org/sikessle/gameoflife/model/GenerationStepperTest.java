@@ -9,7 +9,7 @@ public class GenerationStepperTest {
 
 	private GenerationStepper stepper;
 
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testGetNextGenerationWithNullArgument() {
 		setGenerationStepper(new AlwaysLivingGenerationStrategyPlugin());
 		stepper.getNextGeneration(null);

@@ -17,7 +17,7 @@ public class StatusPanel extends JPanel implements Observer {
 
 	public StatusPanel(GridController controller) {
 		if (controller == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 
 		this.controller = controller;

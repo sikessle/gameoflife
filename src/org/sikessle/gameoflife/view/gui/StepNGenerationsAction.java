@@ -18,9 +18,10 @@ public class StepNGenerationsAction implements ActionListener {
 	private static final int GENERATIONS_DELAY = 100;
 	private Timer generationsTimer;
 
-	public StepNGenerationsAction(GridController controller, JTextField textField) {
+	public StepNGenerationsAction(GridController controller,
+			JTextField textField) {
 		if (controller == null || textField == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 
 		this.controller = controller;

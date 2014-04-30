@@ -14,7 +14,7 @@ public class ToggleCellCommand extends Command {
 
 	public ToggleCellCommand(TextView ui) {
 		if (ui == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 		this.controller = ui.getGridController();
 	}

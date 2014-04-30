@@ -15,7 +15,7 @@ public class SaveGameCommand extends Command {
 
 	public SaveGameCommand(TextView ui) {
 		if (ui == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 		this.ui = ui;
 		this.controller = ui.getGridController();

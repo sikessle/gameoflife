@@ -8,7 +8,7 @@ public class QuitCommand extends Command {
 
 	public QuitCommand(TextView ui) {
 		if (ui == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 		this.ui = ui;
 	}

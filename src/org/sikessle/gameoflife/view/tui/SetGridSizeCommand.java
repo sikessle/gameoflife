@@ -14,7 +14,7 @@ public class SetGridSizeCommand extends Command {
 
 	public SetGridSizeCommand(TextView ui) {
 		if (ui == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 		this.controller = ui.getGridController();
 	}

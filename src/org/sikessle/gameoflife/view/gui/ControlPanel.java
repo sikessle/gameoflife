@@ -32,7 +32,7 @@ public class ControlPanel extends JPanel implements Observer {
 
 	public ControlPanel(GridController controller) {
 		if (controller == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 
 		this.controller = controller;

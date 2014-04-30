@@ -12,14 +12,14 @@ public class GenerationStepper {
 
 	public GenerationStepper(GenerationStrategyPlugin generationStrategy) {
 		if (generationStrategy == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 		this.generationStrategy = generationStrategy;
 	}
 
 	public boolean[][] getNextGeneration(boolean[][] cells) {
 		if (cells == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 
 		currentGeneration = cells;
@@ -45,7 +45,7 @@ public class GenerationStepper {
 	public void setGenerationStrategy(
 			GenerationStrategyPlugin generationStrategy) {
 		if (generationStrategy == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 		this.generationStrategy = generationStrategy;
 	}

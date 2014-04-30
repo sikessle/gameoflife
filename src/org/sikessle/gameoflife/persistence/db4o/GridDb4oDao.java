@@ -30,7 +30,7 @@ public class GridDb4oDao implements GridDao {
 	@Override
 	public Grid getByName(String gameName) {
 		if (gameName == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 		GridDto found = findByName(gameName);
 		if (found != null) {
@@ -42,7 +42,7 @@ public class GridDb4oDao implements GridDao {
 	@Override
 	public boolean saveOrUpdate(Grid grid, String gameName) {
 		if (grid == null || gameName == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 		GridDto gridDto = converter.convertDomainToDto(grid, gameName);
 		// make sure only one object with the game name exists in the database
@@ -54,7 +54,7 @@ public class GridDb4oDao implements GridDao {
 	@Override
 	public boolean delete(String gameName) {
 		if (gameName == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 		GridDto found = findByName(gameName);
 		if (found != null) {

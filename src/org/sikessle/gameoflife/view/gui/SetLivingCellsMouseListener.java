@@ -13,7 +13,7 @@ public class SetLivingCellsMouseListener extends MouseInputAdapter {
 
 	public SetLivingCellsMouseListener(GridController controller, int cellSize) {
 		if (controller == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 
 		this.controller = controller;

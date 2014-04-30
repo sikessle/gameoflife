@@ -14,7 +14,7 @@ public class StepNGenerationsCommand extends Command {
 
 	public StepNGenerationsCommand(TextView ui) {
 		if (ui == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 		this.controller = ui.getGridController();
 	}

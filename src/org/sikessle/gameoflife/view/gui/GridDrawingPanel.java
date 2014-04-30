@@ -26,7 +26,7 @@ public class GridDrawingPanel extends JPanel implements Observer {
 
 	public GridDrawingPanel(GridController controller) {
 		if (controller == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 
 		this.controller = controller;

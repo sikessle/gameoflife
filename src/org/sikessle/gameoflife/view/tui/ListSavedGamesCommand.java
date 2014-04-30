@@ -10,7 +10,7 @@ public class ListSavedGamesCommand extends Command {
 
 	public ListSavedGamesCommand(TextView ui) {
 		if (ui == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 		this.ui = ui;
 	}

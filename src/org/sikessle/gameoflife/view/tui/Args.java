@@ -9,7 +9,7 @@ public class Args implements Iterable<String> {
 
 	public Args(String inputToParse) {
 		if (inputToParse == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 		parse(inputToParse);
 	}

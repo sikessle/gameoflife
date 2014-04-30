@@ -61,7 +61,7 @@ public class GridImpl implements Grid {
 	@Override
 	public void setCells(boolean[][] cells) {
 		if (cells == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 		if (cells.length == 0) {
 			throw new IndexOutOfBoundsException();

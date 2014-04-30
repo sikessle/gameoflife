@@ -16,7 +16,7 @@ public class SwingView extends JFrame {
 
 	public SwingView(GridController controller) {
 		if (controller == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 
 		this.controller = controller;

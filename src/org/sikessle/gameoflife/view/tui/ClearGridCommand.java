@@ -8,7 +8,7 @@ public class ClearGridCommand extends Command {
 
 	public ClearGridCommand(TextView ui) {
 		if (ui == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 		this.ui = ui;
 	}

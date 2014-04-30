@@ -21,7 +21,7 @@ public class GridControllerImpl implements GridController {
 	@Inject
 	public GridControllerImpl(Grid grid) {
 		if (grid == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException();
 		}
 		this.grid = grid;
 		grid.addObserver(this);
