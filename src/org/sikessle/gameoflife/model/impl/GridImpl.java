@@ -11,6 +11,8 @@ import com.google.inject.Inject;
 
 public class GridImpl implements Grid {
 
+	private static final int INIT_ROWS = 10;
+	private static final int INIT_COLUMNS = 20;
 	private boolean[][] cells;
 	private int rows;
 	private int columns;
@@ -21,8 +23,8 @@ public class GridImpl implements Grid {
 	public GridImpl(GenerationStrategyPlugin generationStrategy) {
 		generationStepper = new GenerationStepper(generationStrategy);
 		observable = new ObservableImpl();
-		rows = 10;
-		columns = 20;
+		rows = INIT_ROWS;
+		columns = INIT_COLUMNS;
 		createGrid();
 	}
 

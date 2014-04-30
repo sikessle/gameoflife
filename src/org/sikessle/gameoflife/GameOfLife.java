@@ -10,6 +10,9 @@ import com.google.inject.Injector;
 
 public class GameOfLife {
 
+	private GameOfLife() {
+	}
+
 	public static void main(String[] args) {
 
 		Injector injector = Guice.createInjector(new BaseModule(),

@@ -3,6 +3,8 @@ package org.sikessle.gameoflife.persistence.hibernate;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.persistence.PersistenceException;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
@@ -128,7 +130,7 @@ public class GridHibernateDao implements GridDao {
 		return result;
 	}
 
-	private void setupTransactionAndSession() throws HibernateException {
+	private void setupTransactionAndSession() {
 		currentSession = HibernateUtil.getInstance().getCurrentSession();
 		currentTransaction = currentSession.beginTransaction();
 	}
@@ -139,7 +141,9 @@ public class GridHibernateDao implements GridDao {
 			try {
 				currentTransaction.rollback();
 			} catch (HibernateException exRb) {
-				throw new RuntimeException(transactionException.getMessage());
+				transactionException.addSuppressed(exRb);
+				throw new PersistenceException(
+						transactionException.getMessage());
 			}
 		}
 	}

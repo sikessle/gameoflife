@@ -42,7 +42,6 @@ public class GridCouchDBDao implements GridDao {
 			e.printStackTrace();
 		}
 		CouchDbInstance dbInstance = new StdCouchDbInstance(client);
-		dbInstance.deleteDatabase("gameoflife"); // FIXME remove
 		db = dbInstance.createConnector("gameoflife", true);
 	}
 
@@ -106,7 +105,6 @@ public class GridCouchDBDao implements GridDao {
 	}
 
 	private GridCouchDBDto findByName(final String gameName) {
-		GridCouchDBDto grid = db.find(GridCouchDBDto.class, gameName);
-		return grid;
+		return db.find(GridCouchDBDto.class, gameName);
 	}
 }

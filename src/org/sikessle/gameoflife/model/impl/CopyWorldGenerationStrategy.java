@@ -4,6 +4,8 @@ import org.sikessle.gameoflife.model.GenerationStrategyPlugin;
 
 public class CopyWorldGenerationStrategy implements GenerationStrategyPlugin {
 
+	private static final int MODULO_EVEN = 2;
+
 	@Override
 	public String getName() {
 		return "Copy-World";
@@ -11,7 +13,7 @@ public class CopyWorldGenerationStrategy implements GenerationStrategyPlugin {
 
 	@Override
 	public boolean nextStateOfLivingCell(int livingNeighbors) {
-		if (livingNeighbors % 2 == 0) {
+		if (isEven(livingNeighbors)) {
 			return false;
 		}
 		return true;
@@ -19,10 +21,14 @@ public class CopyWorldGenerationStrategy implements GenerationStrategyPlugin {
 
 	@Override
 	public boolean nextStateOfDeadCell(int livingNeighbors) {
-		if (livingNeighbors % 2 != 0) {
+		if (!isEven(livingNeighbors)) {
 			return true;
 		}
 		return false;
+	}
+
+	private boolean isEven(int number) {
+		return number % MODULO_EVEN == 0;
 	}
 
 }

@@ -14,6 +14,8 @@ import org.sikessle.gameoflife.controller.GridController;
 
 public class ControlPanel extends JPanel implements Observer {
 
+	private static final int STEP_N_GENERATIONS_TEXTFIELD_COLUMNS = 3;
+
 	private static final long serialVersionUID = -5771602211891082511L;
 
 	protected static final long GENERATIONS_DELAY = 100;
@@ -51,7 +53,8 @@ public class ControlPanel extends JPanel implements Observer {
 	private void buildStepNGenerationsControls() {
 		stepNGenerationsBtn = new JButton("step >");
 		stopStepNGenerationsBtn = new JButton("stop");
-		stepNGenerationsField = new JTextField(String.valueOf(1), 3);
+		stepNGenerationsField = new JTextField(String.valueOf(1),
+				STEP_N_GENERATIONS_TEXTFIELD_COLUMNS);
 
 		final StepNGenerationsAction stepGenerationsAction = new StepNGenerationsAction(
 				controller, stepNGenerationsField);

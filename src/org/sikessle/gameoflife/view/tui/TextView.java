@@ -41,7 +41,7 @@ public class TextView implements Observer {
 		redraw();
 	}
 
-	public void redraw() {
+	public final void redraw() {
 		boolean[][] cells = controller.getCells();
 
 		drawLineBreak();
@@ -166,7 +166,7 @@ public class TextView implements Observer {
 	}
 
 	private Args getArguments(String line) {
-		int indexOfFirstSpace = line.indexOf(" ");
+		int indexOfFirstSpace = line.indexOf(' ');
 		String argsPart;
 
 		if (indexOfFirstSpace < 0) {

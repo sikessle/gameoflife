@@ -49,8 +49,7 @@ public class GridDrawingPanel extends JPanel implements Observer {
 		int rows = controller.getNumberOfRows();
 		int columns = controller.getNumberOfColumns();
 
-		Dimension size = new Dimension(columns * CELL_SIZE, rows * CELL_SIZE);
-		return size;
+		return new Dimension(columns * CELL_SIZE, rows * CELL_SIZE);
 	}
 
 	@Override
@@ -80,8 +79,6 @@ public class GridDrawingPanel extends JPanel implements Observer {
 
 		if (alive) {
 			drawLivingCell(x, y);
-		} else {
-			drawDeadCell(x, y);
 		}
 	}
 
@@ -93,10 +90,6 @@ public class GridDrawingPanel extends JPanel implements Observer {
 	private void drawLivingCell(int x, int y) {
 		graphics.setColor(livingCellColor);
 		graphics.fillRect(x, y, CELL_SIZE, CELL_SIZE);
-	}
-
-	private void drawDeadCell(int x, int y) {
-		// leave background as is
 	}
 
 }

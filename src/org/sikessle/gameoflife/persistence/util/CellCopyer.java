@@ -1,6 +1,6 @@
 package org.sikessle.gameoflife.persistence.util;
 
-public class CellCopyer {
+public final class CellCopyer {
 
 	private CellCopyer() {
 		// static utility class
