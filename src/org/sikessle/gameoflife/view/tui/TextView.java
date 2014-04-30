@@ -110,7 +110,7 @@ public class TextView implements Observer {
 	}
 
 	private void drawLineBreak() {
-		writeOut(System.lineSeparator());
+		writeOut(System.getProperty("line.separator"));
 	}
 
 	private void drawAvailableCommands() {
