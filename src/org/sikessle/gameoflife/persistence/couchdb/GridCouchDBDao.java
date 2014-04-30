@@ -67,6 +67,9 @@ public class GridCouchDBDao implements GridDao {
 		if (grid == null || gameName == null) {
 			throw new IllegalArgumentException();
 		}
+		if (gameName.isEmpty()) {
+			return false;
+		}
 		GridDto gridDto = converter.convertDomainToDto(grid, gameName);
 		updateOrCreate(gameName, gridDto);
 

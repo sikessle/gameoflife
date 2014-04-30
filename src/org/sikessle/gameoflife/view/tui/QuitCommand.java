@@ -6,11 +6,11 @@ public class QuitCommand extends Command {
 	private static final String KEY = "q";
 	private static final String DESCRIPTION = KEY + ": quit";
 
-	public QuitCommand(TextView ui) {
-		if (ui == null) {
+	public QuitCommand(TextView textUi) {
+		if (textUi == null) {
 			throw new IllegalArgumentException();
 		}
-		this.ui = ui;
+		this.ui = textUi;
 	}
 
 	@Override

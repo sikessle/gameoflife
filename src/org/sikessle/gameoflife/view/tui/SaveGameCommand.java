@@ -13,12 +13,12 @@ public class SaveGameCommand extends Command {
 	private static final String DESCRIPTION = KEY
 			+ " [name]: save the game under the name";
 
-	public SaveGameCommand(TextView ui) {
-		if (ui == null) {
+	public SaveGameCommand(TextView textUi) {
+		if (textUi == null) {
 			throw new IllegalArgumentException();
 		}
-		this.ui = ui;
-		this.controller = ui.getGridController();
+		this.ui = textUi;
+		this.controller = textUi.getGridController();
 	}
 
 	@Override

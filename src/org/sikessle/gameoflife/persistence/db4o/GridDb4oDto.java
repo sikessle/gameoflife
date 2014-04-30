@@ -1,7 +1,7 @@
 package org.sikessle.gameoflife.persistence.db4o;
 
 import org.sikessle.gameoflife.persistence.util.GridDto;
-import org.sikessle.gameoflife.util.CellCopyer;
+import org.sikessle.gameoflife.util.ArrayCopier;
 
 public class GridDb4oDto implements GridDto {
 
@@ -20,12 +20,12 @@ public class GridDb4oDto implements GridDto {
 
 	@Override
 	public boolean[][] getCells() {
-		return CellCopyer.copyCells(cells);
+		return ArrayCopier.copy(cells);
 	}
 
 	@Override
 	public void setCells(boolean[][] cells) {
-		this.cells = CellCopyer.copyCells(cells);
+		this.cells = ArrayCopier.copy(cells);
 	}
 
 }

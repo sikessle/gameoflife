@@ -12,11 +12,11 @@ public class ToggleCellCommand extends Command {
 	private static final String KEY = "t";
 	private static final String DESCRIPTION = KEY + " [x] [y]: toggle cell";
 
-	public ToggleCellCommand(TextView ui) {
-		if (ui == null) {
+	public ToggleCellCommand(TextView textUi) {
+		if (textUi == null) {
 			throw new IllegalArgumentException();
 		}
-		this.controller = ui.getGridController();
+		this.controller = textUi.getGridController();
 	}
 
 	@Override

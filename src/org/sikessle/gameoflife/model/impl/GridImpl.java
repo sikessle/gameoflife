@@ -5,7 +5,7 @@ import java.util.Observer;
 
 import org.sikessle.gameoflife.model.GenerationStrategyPlugin;
 import org.sikessle.gameoflife.model.Grid;
-import org.sikessle.gameoflife.util.CellCopyer;
+import org.sikessle.gameoflife.util.ArrayCopier;
 import org.sikessle.gameoflife.util.ObservableImpl;
 
 import com.google.inject.Inject;
@@ -56,7 +56,7 @@ public class GridImpl implements Grid {
 
 	@Override
 	public boolean[][] getCells() {
-		return CellCopyer.copyCells(cells);
+		return ArrayCopier.copy(cells);
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class GridImpl implements Grid {
 		if (cells.length == 0) {
 			throw new IndexOutOfBoundsException();
 		}
-		this.cells = CellCopyer.copyCells(cells);
+		this.cells = ArrayCopier.copy(cells);
 		this.rows = this.cells.length;
 		this.columns = this.cells[0].length;
 		setChangedAndNotify();

@@ -1,12 +1,12 @@
 package org.sikessle.gameoflife.util;
 
-public final class CellCopyer {
+public final class ArrayCopier {
 
-	private CellCopyer() {
+	private ArrayCopier() {
 		// static utility class
 	}
 
-	public static boolean[][] copyCells(boolean[][] source) {
+	public static boolean[][] copy(boolean[][] source) {
 		if (source == null) {
 			return null;
 		}

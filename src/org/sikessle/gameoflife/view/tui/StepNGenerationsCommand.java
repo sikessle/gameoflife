@@ -16,11 +16,11 @@ public class StepNGenerationsCommand extends Command {
 	private static final Logger LOG = LoggerFactory
 			.getLogger(StepNGenerationsCommand.class);
 
-	public StepNGenerationsCommand(TextView ui) {
-		if (ui == null) {
+	public StepNGenerationsCommand(TextView textUi) {
+		if (textUi == null) {
 			throw new IllegalArgumentException();
 		}
-		this.controller = ui.getGridController();
+		this.controller = textUi.getGridController();
 	}
 
 	@Override

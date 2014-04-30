@@ -8,11 +8,11 @@ public class StepOneGenerationCommand extends Command {
 	private static final String KEY = "n";
 	private static final String DESCRIPTION = KEY + ": step 1 generation";
 
-	public StepOneGenerationCommand(TextView ui) {
-		if (ui == null) {
+	public StepOneGenerationCommand(TextView textUi) {
+		if (textUi == null) {
 			throw new IllegalArgumentException();
 		}
-		this.controller = ui.getGridController();
+		this.controller = textUi.getGridController();
 	}
 
 	@Override

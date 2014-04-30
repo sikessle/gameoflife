@@ -23,6 +23,7 @@ public class GridDrawingPanel extends JPanel implements Observer {
 	private Graphics graphics;
 
 	private static final int CELL_SIZE = 30;
+	private static final int BORDER_WIDTH = 1;
 
 	public GridDrawingPanel(GridController controller) {
 		if (controller == null) {
@@ -89,7 +90,10 @@ public class GridDrawingPanel extends JPanel implements Observer {
 
 	private void drawLivingCell(int x, int y) {
 		graphics.setColor(livingCellColor);
-		graphics.fillRect(x, y, CELL_SIZE, CELL_SIZE);
+		int startX = x + BORDER_WIDTH;
+		int startY = y + BORDER_WIDTH;
+		int size = CELL_SIZE - BORDER_WIDTH;
+		graphics.fillRect(startX, startY, size, size);
 	}
 
 }

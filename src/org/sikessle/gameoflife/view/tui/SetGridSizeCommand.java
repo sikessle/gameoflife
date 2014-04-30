@@ -12,11 +12,11 @@ public class SetGridSizeCommand extends Command {
 	private static final String KEY = "s";
 	private static final String DESCRIPTION = KEY + " [x] [y]: set grid size";
 
-	public SetGridSizeCommand(TextView ui) {
-		if (ui == null) {
+	public SetGridSizeCommand(TextView textUi) {
+		if (textUi == null) {
 			throw new IllegalArgumentException();
 		}
-		this.controller = ui.getGridController();
+		this.controller = textUi.getGridController();
 	}
 
 	@Override

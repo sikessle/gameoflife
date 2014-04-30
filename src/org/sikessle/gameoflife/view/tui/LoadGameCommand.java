@@ -13,12 +13,12 @@ public class LoadGameCommand extends Command {
 	private static final String DESCRIPTION = KEY
 			+ " [game]: load a saved game";
 
-	public LoadGameCommand(TextView ui) {
-		if (ui == null) {
+	public LoadGameCommand(TextView textUi) {
+		if (textUi == null) {
 			throw new IllegalArgumentException();
 		}
-		this.ui = ui;
-		this.controller = ui.getGridController();
+		this.ui = textUi;
+		this.controller = textUi.getGridController();
 	}
 
 	@Override

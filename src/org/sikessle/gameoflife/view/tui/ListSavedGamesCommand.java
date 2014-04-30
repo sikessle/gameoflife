@@ -8,11 +8,11 @@ public class ListSavedGamesCommand extends Command {
 	private static final String KEY = "saved";
 	private static final String DESCRIPTION = KEY + ": list saved games";
 
-	public ListSavedGamesCommand(TextView ui) {
-		if (ui == null) {
+	public ListSavedGamesCommand(TextView textUi) {
+		if (textUi == null) {
 			throw new IllegalArgumentException();
 		}
-		this.ui = ui;
+		this.ui = textUi;
 	}
 
 	@Override

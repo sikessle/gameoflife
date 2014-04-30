@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.sikessle.gameoflife.persistence.util.GridDto;
-import org.sikessle.gameoflife.util.CellCopyer;
+import org.sikessle.gameoflife.util.ArrayCopier;
 
 @Entity
 @Table(name = "gameoflife_grid")
@@ -33,12 +33,12 @@ public class GridHibernateDto implements GridDto, Serializable {
 
 	@Override
 	public boolean[][] getCells() {
-		return CellCopyer.copyCells(cells);
+		return ArrayCopier.copy(cells);
 	}
 
 	@Override
 	public void setCells(boolean[][] cells) {
-		this.cells = CellCopyer.copyCells(cells);
+		this.cells = ArrayCopier.copy(cells);
 	}
 
 }

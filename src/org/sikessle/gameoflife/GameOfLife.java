@@ -2,7 +2,7 @@ package org.sikessle.gameoflife;
 
 import org.apache.log4j.PropertyConfigurator;
 import org.sikessle.gameoflife.controller.GridController;
-import org.sikessle.gameoflife.persistence.dummy.DummyModule;
+import org.sikessle.gameoflife.persistence.db4o.Db4oModule;
 import org.sikessle.gameoflife.view.gui.SwingView;
 import org.sikessle.gameoflife.view.tui.TextView;
 
@@ -18,7 +18,7 @@ public final class GameOfLife {
 		PropertyConfigurator.configure("log4j.properties");
 
 		Injector injector = Guice.createInjector(new BaseModule(),
-				new DummyModule());
+				new Db4oModule());
 		GridController controller = injector.getInstance(GridController.class);
 		new SwingView(controller);
 		TextView textUI = new TextView(controller);

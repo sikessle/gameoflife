@@ -37,6 +37,7 @@ public class SwingView extends JFrame {
 		GridDrawingPanel gridPanel = new GridDrawingPanel(controller);
 		ControlPanel controlPanel = new ControlPanel(controller);
 		StatusPanel statusPanel = new StatusPanel(controller);
+		setJMenuBar(new MenuBar(controller));
 		add(controlPanel, BorderLayout.NORTH);
 		add(gridPanel, BorderLayout.CENTER);
 		add(statusPanel, BorderLayout.SOUTH);
@@ -49,5 +50,4 @@ public class SwingView extends JFrame {
 			}
 		});
 	}
-
 }

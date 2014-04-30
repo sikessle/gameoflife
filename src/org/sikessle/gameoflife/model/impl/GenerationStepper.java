@@ -1,7 +1,7 @@
 package org.sikessle.gameoflife.model.impl;
 
 import org.sikessle.gameoflife.model.GenerationStrategyPlugin;
-import org.sikessle.gameoflife.util.CellCopyer;
+import org.sikessle.gameoflife.util.ArrayCopier;
 
 public class GenerationStepper {
 
@@ -23,7 +23,7 @@ public class GenerationStepper {
 			throw new IllegalArgumentException();
 		}
 
-		currentGeneration = CellCopyer.copyCells(cells);
+		currentGeneration = ArrayCopier.copy(cells);
 		nextGeneration = new boolean[currentGeneration.length][];
 
 		for (int i = 0; i < currentGeneration.length; i++) {
