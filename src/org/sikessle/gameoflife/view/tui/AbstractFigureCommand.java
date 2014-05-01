@@ -26,6 +26,8 @@ public abstract class AbstractFigureCommand extends Command {
 
 	private void parseArguments() {
 		if (getArguments().size() < 2) {
+			spawnX = -1;
+			spawnY = -1;
 			return;
 		}
 

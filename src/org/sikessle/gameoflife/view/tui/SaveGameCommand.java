@@ -41,6 +41,7 @@ public class SaveGameCommand extends Command {
 
 	private void parseArguments() {
 		if (getArguments().size() < 1) {
+			gameName = null;
 			return;
 		}
 

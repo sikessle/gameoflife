@@ -32,6 +32,8 @@ public class SetGridSizeCommand extends Command {
 
 	private void parseArguments() {
 		if (getArguments().size() < 2) {
+			rows = 0;
+			columns = 0;
 			return;
 		}
 

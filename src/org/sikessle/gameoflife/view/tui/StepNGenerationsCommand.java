@@ -36,6 +36,7 @@ public class StepNGenerationsCommand extends Command {
 
 	private void parseArguments() {
 		if (getArguments().size() < 1) {
+			frames = 0;
 			return;
 		}
 

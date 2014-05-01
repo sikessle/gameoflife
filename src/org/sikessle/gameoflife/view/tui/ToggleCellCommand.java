@@ -40,6 +40,8 @@ public class ToggleCellCommand extends Command {
 
 	private void parseArguments() {
 		if (getArguments().size() < 2) {
+			row = -1;
+			column = -1;
 			return;
 		}
 
