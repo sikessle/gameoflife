@@ -14,8 +14,8 @@ import org.ektorp.http.StdHttpClient;
 import org.ektorp.impl.StdCouchDbInstance;
 import org.sikessle.gameoflife.model.Grid;
 import org.sikessle.gameoflife.persistence.GridDao;
+import org.sikessle.gameoflife.persistence.GridDto;
 import org.sikessle.gameoflife.persistence.util.DtoAndDomainObjectConverter;
-import org.sikessle.gameoflife.persistence.util.GridDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

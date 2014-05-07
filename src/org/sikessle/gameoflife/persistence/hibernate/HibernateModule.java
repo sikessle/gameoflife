@@ -1,7 +1,7 @@
 package org.sikessle.gameoflife.persistence.hibernate;
 
 import org.sikessle.gameoflife.persistence.GridDao;
-import org.sikessle.gameoflife.persistence.util.GridDto;
+import org.sikessle.gameoflife.persistence.GridDto;
 
 import com.google.inject.AbstractModule;
 

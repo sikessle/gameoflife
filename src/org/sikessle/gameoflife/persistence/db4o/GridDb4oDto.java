@@ -1,6 +1,6 @@
 package org.sikessle.gameoflife.persistence.db4o;
 
-import org.sikessle.gameoflife.persistence.util.GridDto;
+import org.sikessle.gameoflife.persistence.GridDto;
 import org.sikessle.gameoflife.util.ArrayCopier;
 
 public class GridDb4oDto implements GridDto {

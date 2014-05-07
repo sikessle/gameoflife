@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.sikessle.gameoflife.model.Grid;
 import org.sikessle.gameoflife.persistence.GridDao;
+import org.sikessle.gameoflife.persistence.GridDto;
 import org.sikessle.gameoflife.persistence.util.DtoAndDomainObjectConverter;
-import org.sikessle.gameoflife.persistence.util.GridDto;
 
 import com.db4o.Db4oEmbedded;
 import com.db4o.EmbeddedObjectContainer;

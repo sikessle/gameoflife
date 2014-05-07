@@ -3,7 +3,7 @@ package org.sikessle.gameoflife.persistence.couchdb;
 import java.io.Serializable;
 
 import org.codehaus.jackson.annotate.JsonProperty;
-import org.sikessle.gameoflife.persistence.util.GridDto;
+import org.sikessle.gameoflife.persistence.GridDto;
 import org.sikessle.gameoflife.util.ArrayCopier;
 
 public class GridCouchDBDto implements GridDto, Serializable {

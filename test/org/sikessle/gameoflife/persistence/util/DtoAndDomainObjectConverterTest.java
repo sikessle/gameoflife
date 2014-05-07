@@ -8,6 +8,7 @@ import org.sikessle.gameoflife.BaseModule;
 import org.sikessle.gameoflife.model.AlwaysDeadGenerationStrategyPlugin;
 import org.sikessle.gameoflife.model.Grid;
 import org.sikessle.gameoflife.model.impl.GridImpl;
+import org.sikessle.gameoflife.persistence.GridDto;
 import org.sikessle.gameoflife.persistence.db4o.Db4oModule;
 import org.sikessle.gameoflife.persistence.db4o.GridDb4oDto;
 

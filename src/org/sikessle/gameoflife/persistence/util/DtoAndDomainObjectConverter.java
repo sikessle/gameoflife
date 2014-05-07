@@ -1,6 +1,7 @@
 package org.sikessle.gameoflife.persistence.util;
 
 import org.sikessle.gameoflife.model.Grid;
+import org.sikessle.gameoflife.persistence.GridDto;
 
 import com.google.inject.Injector;
 

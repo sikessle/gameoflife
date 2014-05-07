@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.sikessle.gameoflife.persistence.util.GridDto;
+import org.sikessle.gameoflife.persistence.GridDto;
 import org.sikessle.gameoflife.util.ArrayCopier;
 
 @Entity
