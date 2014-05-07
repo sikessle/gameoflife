@@ -7,14 +7,14 @@ import org.sikessle.gameoflife.model.Coordinate;
 import org.sikessle.gameoflife.model.Figure;
 import org.sikessle.gameoflife.model.Grid;
 
-import com.google.inject.Inject;
-
 public class FigureSpawner {
 
-	@Inject
 	private Coordinate target;
 
 	public void spawn(Figure figure, Grid grid) {
+		if (target == null) {
+			return;
+		}
 		List<Coordinate> coords = getTranslatedCoordinates(figure
 				.getCoordinates());
 
