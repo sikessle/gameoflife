@@ -123,4 +123,9 @@ public class GridControllerImpl implements GridController {
 		grid.spawnFigure(figure, row, column);
 	}
 
+	@Override
+	public int getNumberOfSteppedGenerations() {
+		return grid.getNumberOfSteppedGenerations();
+	}
+
 }

@@ -36,4 +36,6 @@ public interface GridController extends Observer, Observable {
 
 	void spawnFigure(Figure figure, int row, int column);
 
+	int getNumberOfSteppedGenerations();
+
 }

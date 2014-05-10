@@ -137,7 +137,7 @@ public class GridImpl implements Grid {
 	@Override
 	public void setGenerationStrategy(
 			GenerationStrategyPlugin generationStrategy) {
-		this.generationStepper.setGenerationStrategy(generationStrategy);
+		generationStepper.setGenerationStrategy(generationStrategy);
 	}
 
 	@Override
@@ -147,6 +147,11 @@ public class GridImpl implements Grid {
 		}
 		figureSpawner.setTarget(new CoordinateImpl(row, column));
 		figureSpawner.spawn(figure, this);
+	}
+
+	@Override
+	public int getNumberOfSteppedGenerations() {
+		return generationStepper.getNumberOfSteppedGenerations();
 	}
 
 }

@@ -5,6 +5,7 @@ import org.sikessle.gameoflife.util.ArrayCopier;
 
 public class GenerationStepper {
 
+	private int steppedGenerations;
 	private boolean[][] currentGeneration;
 	private boolean[][] nextGeneration;
 	private int currentRow;
@@ -35,8 +36,17 @@ public class GenerationStepper {
 				saveNextGenerationOfCurrentCell();
 			}
 		}
+		steppedGenerations++;
 
 		return nextGeneration;
+	}
+
+	public int getNumberOfSteppedGenerations() {
+		return steppedGenerations;
+	}
+
+	public void resetNumberOfSteppedGenerations() {
+		steppedGenerations = 0;
 	}
 
 	public GenerationStrategyPlugin getGenerationStrategy() {
