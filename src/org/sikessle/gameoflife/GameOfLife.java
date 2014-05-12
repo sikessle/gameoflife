@@ -16,6 +16,7 @@ public final class GameOfLife {
 
 	public static void main(String[] args) {
 		PropertyConfigurator.configure("log4j.properties");
+		setSystemDependentUISettings();
 
 		Injector injector = Guice.createInjector(new BaseModule(),
 				new DummyModule());
@@ -23,6 +24,12 @@ public final class GameOfLife {
 		new SwingView(controller);
 		TextView textUI = new TextView(controller);
 		textUI.readAndInterpretInLoopFromInputStream();
+	}
+
+	private static void setSystemDependentUISettings() {
+		System.setProperty("apple.laf.useScreenMenuBar", "true");
+		System.setProperty("com.apple.mrj.application.apple.menu.about.name",
+				"GameOfLife");
 	}
 
 }
