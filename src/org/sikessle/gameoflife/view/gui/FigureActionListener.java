@@ -14,7 +14,7 @@ public class FigureActionListener extends MouseAdapter implements
 	private final Figure figure;
 	private final GridController controller;
 	private final GridDrawingPanel gridPanel;
-	private int cellSize = 30;
+	private final int cellSize;
 
 	public FigureActionListener(Figure figure, GridController controller,
 			GridDrawingPanel gridPanel) {
