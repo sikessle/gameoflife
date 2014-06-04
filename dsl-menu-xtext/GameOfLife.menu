@@ -1,0 +1,21 @@
+MenuBar for GameOfLife {
+	menu LoadSave {
+		menuItem Load {
+			action ".."
+		}
+		menuItem Save {
+			action ".."
+		}
+	}
+	menu Figures {
+		menuItem Glider {
+			action ".."
+		}
+		menuItem LightWeightSpaceship {
+			action ".."
+		}
+		menuItem rPentomino {
+			action ".."
+		}
+	}
+}
