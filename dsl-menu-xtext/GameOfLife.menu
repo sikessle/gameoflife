@@ -1,21 +1,21 @@
 MenuBar for GameOfLife {
 	menu LoadSave {
 		menuItem Load {
-			action ".."
+			action "new LoadDialog(controller);"
 		}
 		menuItem Save {
-			action ".."
+			action "new SaveDialog(controller);"
 		}
 	}
 	menu Figures {
 		menuItem Glider {
-			action ".."
+			action "new FigureSpawnOneTimeMouseAdapter(new Glider(), controller, gridPanel);"
 		}
 		menuItem LightWeightSpaceship {
-			action ".."
+			action "new FigureSpawnOneTimeMouseAdapter(new LightWeightSpaceship(), controller, gridPanel);"
 		}
 		menuItem rPentomino {
-			action ".."
+			action "new FigureSpawnOneTimeMouseAdapter(new RPentomino(), controller, gridPanel);"
 		}
 	}
 }
