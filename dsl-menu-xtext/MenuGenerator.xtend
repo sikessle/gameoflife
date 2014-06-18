@@ -15,7 +15,7 @@ class MenuGenerator implements IGenerator {
     Model model;
     
     override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-        val model = resource.allContents.filter(typeof(Model)).next 
+        model = resource.allContents.filter(typeof(Model)).next 
         fsa.generateFile("org/sikessle/gameoflie/view/gui/MenuBarGenerated.java", model.compile)
     }
     
