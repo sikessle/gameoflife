@@ -1,5 +1,7 @@
 package org.sikessle.gameoflife.view.gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,8 +47,18 @@ public class MenuBar extends JMenuBar {
 		JMenuItem loadItem = new JMenuItem(TITLE_LOAD);
 		JMenuItem saveItem = new JMenuItem(TITLE_SAVE);
 
-		loadItem.addActionListener(new LoadActionListener(controller));
-		saveItem.addActionListener(new SaveActionListener(controller));
+		loadItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new LoadDialog(controller);
+			}
+		});
+		saveItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new SaveDialog(controller);
+			}
+		});
 
 		persistenceMenu.add(loadItem);
 		persistenceMenu.add(saveItem);
@@ -56,10 +68,15 @@ public class MenuBar extends JMenuBar {
 	private void buildFiguresMenu() {
 		JMenu figuresMenu = new JMenu(TITLE_FIGURES);
 
-		for (Figure figure : getFigures()) {
+		for (final Figure figure : getFigures()) {
 			JMenuItem figureItem = new JMenuItem(figure.getName());
-			figureItem.addActionListener(new FigureActionListener(figure,
-					controller, gridPanel));
+			figureItem.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					new FigureSpawnOneTimeMouseAdapter(figure, controller,
+							gridPanel);
+				}
+			});
 			figuresMenu.add(figureItem);
 		}
 		add(figuresMenu);
