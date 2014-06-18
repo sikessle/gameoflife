@@ -50,7 +50,7 @@ class MenuGenerator implements IGenerator {
         private final GridController controller;
         private final GridDrawingPanel gridPanel;
 
-        public MenuBar(GridController controller, GridDrawingPanel gridPanel) {
+        public MenuBarGenerated(GridController controller, GridDrawingPanel gridPanel) {
             if (controller == null || gridPanel == null) {
                 throw new IllegalArgumentException();
             }
@@ -62,7 +62,7 @@ class MenuGenerator implements IGenerator {
     '''
     
     def buildMenuBuilderMethod() '''
-        private void MenuBarGenerated() {
+        private void buildMenuBar() {
             // build a menu
             «FOR menu:model.menu»
                 JMenu «menu.name.toFirstLower» = new JMenu("«menu.name»");
