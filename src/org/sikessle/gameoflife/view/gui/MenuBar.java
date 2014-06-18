@@ -2,8 +2,6 @@ package org.sikessle.gameoflife.view.gui;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -15,7 +13,7 @@ import org.sikessle.gameoflife.model.impl.Glider;
 import org.sikessle.gameoflife.model.impl.LightWeightSpaceship;
 import org.sikessle.gameoflife.model.impl.RPentomino;
 
-public class MenuBar extends JMenuBar implements Observer {
+public class MenuBar extends JMenuBar {
 
 	private static final long serialVersionUID = 1765005391707552689L;
 
@@ -35,8 +33,6 @@ public class MenuBar extends JMenuBar implements Observer {
 		this.controller = controller;
 		this.gridPanel = gridPanel;
 		buildMenuBar();
-		controller.addObserver(this);
-		updateStatus();
 	}
 
 	private void buildMenuBar() {
@@ -77,13 +73,5 @@ public class MenuBar extends JMenuBar implements Observer {
 		figures.add(new RPentomino());
 
 		return figures;
-	}
-
-	@Override
-	public void update(Observable o, Object arg) {
-		updateStatus();
-	}
-
-	private void updateStatus() {
 	}
 }
