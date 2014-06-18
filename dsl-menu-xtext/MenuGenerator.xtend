@@ -24,7 +24,7 @@ class MenuGenerator implements IGenerator {
         
         «buildImports()»
         
-        public class MenuBar extends JMenuBar {
+        public class MenuBarGenerated extends JMenuBar {
 
             «buildConstructorAndFields»
             «buildMenuBuilderMethod»
@@ -62,14 +62,14 @@ class MenuGenerator implements IGenerator {
     '''
     
     def buildMenuBuilderMethod() '''
-        private void buildMenuBar() {
+        private void MenuBarGenerated() {
             // build a menu
             «FOR menu:model.menu»
                 JMenu «menu.name.toFirstLower» = new JMenu("«menu.name»");
                 
                 // fill menu with items
                 «FOR item:menu.menuItem»
-                    JMenuItem «item.name.toFirstLower» = new JMenuItem(TITLE_LOAD);
+                    JMenuItem «item.name.toFirstLower» = new JMenuItem("«item.name»");
                     «item.name.toFirstLower».addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
