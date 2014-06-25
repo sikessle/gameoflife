@@ -21,6 +21,8 @@ public class GridHibernateDto implements GridDto, Serializable {
 	@Column(columnDefinition = "LONGBLOB")
 	private boolean[][] cells;
 
+	private int steppedGenerations;
+
 	@Override
 	public String getGameName() {
 		return gameName;
@@ -39,6 +41,16 @@ public class GridHibernateDto implements GridDto, Serializable {
 	@Override
 	public void setCells(boolean[][] cells) {
 		this.cells = ArrayCopier.copy(cells);
+	}
+
+	@Override
+	public int getNumberOfSteppedGenerations() {
+		return steppedGenerations;
+	}
+
+	@Override
+	public void setNumberOfSteppedGenerations(int generations) {
+		steppedGenerations = generations;
 	}
 
 }

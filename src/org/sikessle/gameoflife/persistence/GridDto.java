@@ -10,4 +10,8 @@ public interface GridDto {
 
 	void setCells(boolean[][] cells);
 
+	int getNumberOfSteppedGenerations();
+
+	void setNumberOfSteppedGenerations(int generations);
+
 }

@@ -13,6 +13,7 @@ public class GridCouchDBDto implements GridDto, Serializable {
 	private String gameName;
 	private String revision;
 	private boolean[][] cells;
+	private int steppedGenerations;
 
 	@Override
 	@JsonProperty("_id")
@@ -44,6 +45,16 @@ public class GridCouchDBDto implements GridDto, Serializable {
 	@Override
 	public void setCells(boolean[][] cells) {
 		this.cells = ArrayCopier.copy(cells);
+	}
+
+	@Override
+	public int getNumberOfSteppedGenerations() {
+		return steppedGenerations;
+	}
+
+	@Override
+	public void setNumberOfSteppedGenerations(int generations) {
+		steppedGenerations = generations;
 	}
 
 }

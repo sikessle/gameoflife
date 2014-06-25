@@ -9,7 +9,7 @@ public class SaveDialog {
 	private static final Object SAVE_TEXT = "Save game under name:";
 	private static final String SAVE_TITLE = "Save game";
 	private static final Object CONFIRM_TEXT = "Game saved";
-	private static final Object ERROR_TEXT = "Failed to load game";
+	private static final Object ERROR_TEXT = "Failed to save game";
 	private final GridController controller;
 
 	public SaveDialog(GridController controller) {

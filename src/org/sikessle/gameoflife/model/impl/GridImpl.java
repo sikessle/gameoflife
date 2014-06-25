@@ -154,4 +154,9 @@ public class GridImpl implements Grid {
 		return generationStepper.getNumberOfSteppedGenerations();
 	}
 
+	@Override
+	public void setNumberOfSteppedGenerations(int generations) {
+		generationStepper.setNumberOfSteppedGenerations(generations);
+	}
+
 }

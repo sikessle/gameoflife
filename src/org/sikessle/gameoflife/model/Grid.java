@@ -28,4 +28,6 @@ public interface Grid extends Observable {
 
 	int getNumberOfSteppedGenerations();
 
+	void setNumberOfSteppedGenerations(int generations);
+
 }

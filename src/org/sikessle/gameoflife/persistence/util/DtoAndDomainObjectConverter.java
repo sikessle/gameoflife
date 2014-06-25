@@ -17,6 +17,8 @@ public class DtoAndDomainObjectConverter {
 		Grid grid = injector.getInstance(Grid.class);
 		boolean[][] cells = gridDto.getCells();
 		grid.setCells(cells);
+		grid.setNumberOfSteppedGenerations(gridDto
+				.getNumberOfSteppedGenerations());
 
 		return grid;
 	}
@@ -26,6 +28,8 @@ public class DtoAndDomainObjectConverter {
 		boolean[][] cells = grid.getCells();
 		gridDto.setGameName(gameName);
 		gridDto.setCells(cells);
+		gridDto.setNumberOfSteppedGenerations(grid
+				.getNumberOfSteppedGenerations());
 
 		return gridDto;
 	}

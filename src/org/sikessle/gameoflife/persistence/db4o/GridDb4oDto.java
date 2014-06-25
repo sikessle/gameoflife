@@ -7,6 +7,7 @@ public class GridDb4oDto implements GridDto {
 
 	private String gameName;
 	private boolean[][] cells;
+	private int steppedGenerations;
 
 	@Override
 	public String getGameName() {
@@ -26,6 +27,16 @@ public class GridDb4oDto implements GridDto {
 	@Override
 	public void setCells(boolean[][] cells) {
 		this.cells = ArrayCopier.copy(cells);
+	}
+
+	@Override
+	public int getNumberOfSteppedGenerations() {
+		return steppedGenerations;
+	}
+
+	@Override
+	public void setNumberOfSteppedGenerations(int generations) {
+		steppedGenerations = generations;
 	}
 
 }

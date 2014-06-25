@@ -45,6 +45,10 @@ public class GenerationStepper {
 		return steppedGenerations;
 	}
 
+	public void setNumberOfSteppedGenerations(int generations) {
+		steppedGenerations = generations;
+	}
+
 	public void resetNumberOfSteppedGenerations() {
 		steppedGenerations = 0;
 	}
