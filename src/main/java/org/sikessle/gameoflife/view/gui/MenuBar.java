@@ -2,18 +2,12 @@ package org.sikessle.gameoflife.view.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import org.sikessle.gameoflife.controller.GridController;
-import org.sikessle.gameoflife.model.Figure;
-import org.sikessle.gameoflife.model.impl.Glider;
-import org.sikessle.gameoflife.model.impl.LightWeightSpaceship;
-import org.sikessle.gameoflife.model.impl.RPentomino;
 
 public class MenuBar extends JMenuBar {
 
@@ -25,7 +19,8 @@ public class MenuBar extends JMenuBar {
 	private static final String TITLE_FIGURES = "Figures";
 
 	private final GridController controller;
-	private final GridDrawingPanel gridPanel;
+
+	private FigureMenuBuilderGenerated figureMenuBuilder;
 
 	public MenuBar(GridController controller, GridDrawingPanel gridPanel) {
 		if (controller == null || gridPanel == null) {
@@ -33,7 +28,7 @@ public class MenuBar extends JMenuBar {
 		}
 
 		this.controller = controller;
-		this.gridPanel = gridPanel;
+		this.figureMenuBuilder = new FigureMenuBuilderGenerated(controller, gridPanel);
 		buildMenuBar();
 	}
 
@@ -68,27 +63,9 @@ public class MenuBar extends JMenuBar {
 	private void buildFiguresMenu() {
 		JMenu figuresMenu = new JMenu(TITLE_FIGURES);
 
-		for (final Figure figure : getFigures()) {
-			JMenuItem figureItem = new JMenuItem(figure.getName());
-			figureItem.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					new FigureSpawnOneTimeMouseAdapter(figure, controller,
-							gridPanel);
-				}
-			});
+		for (JMenuItem figureItem : figureMenuBuilder.buildFiguresMenu()) {
 			figuresMenu.add(figureItem);
 		}
 		add(figuresMenu);
-	}
-
-	private List<Figure> getFigures() {
-		List<Figure> figures = new ArrayList<Figure>();
-
-		figures.add(new Glider());
-		figures.add(new LightWeightSpaceship());
-		figures.add(new RPentomino());
-
-		return figures;
 	}
 }

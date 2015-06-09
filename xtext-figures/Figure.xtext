@@ -3,14 +3,19 @@ grammar org.sikessle.gameoflife.dsl.Figure with org.eclipse.xtext.common.Termina
 generate figure "http://www.sikessle.org/gameoflife/dsl/Figure"
 
 Model:
-	figures += Figure*;
-	
-terminal NEWLINE:
-	'\r'? '\n'
+	figures += Figure*
 ;
 	
 Figure:
 	'Figure' name=ID '{'
-		( col += ( '#' | '-' )+ NEWLINE)+
+		rows += Row+
 	'}'
+;
+
+Row:
+	':' (cells += Cell+)
+;
+
+Cell:
+	(alive ?= '#') | (dead ?= '-')
 ;

@@ -28,9 +28,6 @@ public class CommandsChainOfResponsibility {
 		commands.add(new StepOneGenerationCommand(textUi));
 		commands.add(new StepNGenerationsCommand(textUi));
 		commands.add(new ToggleCellCommand(textUi));
-		commands.add(new GliderCommand(textUi));
-		commands.add(new RPentominoCommand(textUi));
-		commands.add(new LightWeightSpaceshipCommand(textUi));
 	}
 
 	public void handle(String command, Args arguments) {
