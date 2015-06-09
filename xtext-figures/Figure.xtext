@@ -13,7 +13,7 @@ Figure:
 ;
 
 Row:
-	':' (cells += Cell+)
+	(cells += Cell+) '.'
 ;
 
 Cell:
