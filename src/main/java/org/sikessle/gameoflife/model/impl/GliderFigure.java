@@ -17,7 +17,6 @@ public class GliderFigure implements Figure {
 	public List<Coordinate> getCoordinates() {
 		List<Coordinate> coordinates = new ArrayList<Coordinate>();
 		
-		coordinates.add(new CoordinateImpl(0, 0));
 		coordinates.add(new CoordinateImpl(0, 1));
 		coordinates.add(new CoordinateImpl(1, 2));
 		coordinates.add(new CoordinateImpl(2, 0));
