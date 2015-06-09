@@ -5,15 +5,24 @@ generate figure "http://www.sikessle.org/gameoflife/dsl/Figure"
 Model:
 	figures += Figure*
 ;
-	
+
+terminal WS:
+	(' ' | '\t')+
+;
+
+terminal NEWLINE:
+	'\r'? | '\n'
+;
+
 Figure:
-	'Figure' name=ID '{'
+	NEWLINE* 
+	'Figure' name=ID '{' NEWLINE*
 		rows += Row+
-	'}'
+	'}' 
 ;
 
 Row:
-	(cells += Cell+) '.'
+	(cells += Cell+) NEWLINE
 ;
 
 Cell:
