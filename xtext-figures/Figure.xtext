@@ -1,0 +1,16 @@
+grammar org.sikessle.gameoflife.dsl.Figure with org.eclipse.xtext.common.Terminals
+
+generate figure "http://www.sikessle.org/gameoflife/dsl/Figure"
+
+Model:
+	figures += Figure*;
+	
+terminal NEWLINE:
+	'\r'? '\n'
+;
+	
+Figure:
+	'Figure' name=ID '{'
+		( col += ( '#' | '-' )+ NEWLINE)+
+	'}'
+;
